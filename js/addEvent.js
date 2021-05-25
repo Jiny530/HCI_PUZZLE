@@ -20,7 +20,7 @@ var newEvent = function (start, end, eventType) {
 
     $("#contextMenu").hide(); //메뉴 숨김
 
-    modalTitle.html('새로운 일정');
+    modalTitle.html('New Task');
     editType.val(eventType).prop('selected', true);
     editTitle.val('');
     editStart.val(start);
@@ -53,12 +53,12 @@ var newEvent = function (start, end, eventType) {
         };
 
         if (eventData.start > eventData.end) {
-            alert('끝나는 날짜가 앞설 수 없습니다.');
+            alert('End date can not be previous date.');
             return false;
         }
 
         if (eventData.title === '') {
-            alert('일정명은 필수입니다.');
+            alert('Name is necessary.');
             return false;
         }
 

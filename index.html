@@ -4,9 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PUZZLE</title>
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/indexstyle.css" />
 
-    <link rel=" shortcut icon" href="image/favicon.ico">
 
     <link rel="stylesheet" href="vendor/css/fullcalendar.min.css" />
     <link rel="stylesheet" href="vendor/css/bootstrap.min.css">
@@ -36,21 +35,21 @@
       </div>
       <ul class="nav_list">
         <li>
-          <a href="#">
+          <a href="index.html">
             <i class='bx bx-grid-alt' ></i>
-            <span class="links_name">New</span>
+            <span class="links_name">My Calendar</span>
           </a>
-          <span class="tooltip">New</span>
+          <span class="tooltip">My Calendar</span>
         </li>
         <li>
-          <a href="#">
+          <a href="groupscheduling.html">
             <i class='bx bx-pie-chart-alt-2' ></i>
-            <span class="links_name">Scheduling</span>
+            <span class="links_name">Group Scheduling</span>
           </a>
-          <span class="tooltip">Scheduling</span>
+          <span class="tooltip">Group Scheduling</span>
         </li>
         <li>
-          <a href="#">
+          <a href="documents.html">
             <i class='bx bx-folder' ></i>
             <span class="links_name">Documents</span>
           </a>
@@ -71,7 +70,7 @@
     <!--진행 바-->
     <div class="bar-container">
       <center>
-			<progress value="70" max="100"></progress>
+			<progress value="70" max="100" style="margin-bottom:20px;" ></progress>
       </center>
 		</div>
 
@@ -82,10 +81,7 @@
       <div id="contextMenu" class="dropdown clearfix">
           <ul class="dropdown-menu dropNewEvent" role="menu" aria-labelledby="dropdownMenu"
               style="display:block;position:static;margin-bottom:5px;">
-              <li><a tabindex="-1" href="#">Team Meeting</a></li>
-              <li><a tabindex="-1" href="#">Personal</a></li>
-              <li><a tabindex="-1" href="#">School</a></li>
-              <li><a tabindex="-1" href="#">D-day</a></li>
+              <li><a tabindex="-1" href="#">Add schedule</a></li>
               <li class="divider"></li>
               <li><a tabindex="-1" href="#" data-role="close">Close</a></li>
           </ul>
@@ -181,13 +177,13 @@
                     </div>
                   </div>
                   <div class="modal-footer modalBtnContainer-addEvent">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-                      <button type="button" class="btn btn-primary" id="save-event">저장</button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
+                      <button type="button" class="btn btn-primary" id="save-event">Save</button>
                   </div>
                   <div class="modal-footer modalBtnContainer-modifyEvent">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-                      <button type="button" class="btn btn-danger" id="deleteEvent">삭제</button>
-                      <button type="button" class="btn btn-primary" id="updateEvent">저장</button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
+                      <button type="button" class="btn btn-danger" id="deleteEvent">Delete</button>
+                      <button type="button" class="btn btn-primary" id="updateEvent">Save</button>
                   </div>
               </div><!-- /.modal-content -->
           </div><!-- /.modal-dialog -->
@@ -213,6 +209,7 @@
         sidebar.classList.toggle("active");
       }
      </script>
+     
       <script src="script.js"></script>
       <script src="vendor/js/jquery.min.js"></script>
       <script src="vendor/js/bootstrap.min.js"></script>
