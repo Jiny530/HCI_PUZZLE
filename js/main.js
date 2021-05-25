@@ -22,7 +22,7 @@ var calendar = $('#calendar').fullCalendar({
                               },
   eventLimitClick           : 'week', //popover
   navLinks                  : true,
-  defaultDate               : moment('2019-05'), //실제 사용시 현재 날짜로 수정
+  defaultDate               : moment('2021-05'), //실제 사용시 현재 날짜로 수정
   timeFormat                : 'HH:mm',
   defaultTimedEventDuration : '01:00:00',
   editable                  : true,
@@ -46,7 +46,7 @@ var calendar = $('#calendar').fullCalendar({
                                 },
                                 agendaWeek : {
                                   columnFormat : 'M/D ddd',
-                                  titleFormat  : 'YYYY년 M월 D일',
+                                  titleFormat  : 'YYYY. M. D',
                                   eventLimit   : false
                                 },
                                 agendaDay : {
@@ -59,7 +59,7 @@ var calendar = $('#calendar').fullCalendar({
                               },
   customButtons             : { //주말 숨기기 & 보이기 버튼
                                 viewWeekends : {
-                                  text  : '주말',
+                                  text  : 'weekend',
                                   click : function () {
                                     activeInactiveWeekends ? activeInactiveWeekends = false : activeInactiveWeekends = true;
                                     $('#calendar').fullCalendar('option', { 
