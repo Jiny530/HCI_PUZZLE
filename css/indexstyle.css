@@ -1,4 +1,3 @@
-
 /*navbar*/
 /* Google Font CDN Link */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
@@ -26,7 +25,7 @@ body{
   line-height: 30px;
   color: #5f56cd;
   user-select: none;
-  padding-top: 30px;
+  padding-top: 50px;
   padding-bottom: 40px;
 }
 
@@ -78,6 +77,8 @@ body{
   line-height: 50px;
   transform: translateX(-50%);
 }
+
+
 .sidebar.active #btn{
   left: 90%;
 }
@@ -468,10 +469,6 @@ body {
 .fc-day-grid-event .fc-time {
   font-weight: 700;
   text-transform: uppercase;
-}
-
-.fc-unthemed .fc-day-grid td:not(.fc-axis).fc-event-container {
-  /* padding: 0.2rem 0.5rem; */
 }
 
 .fc-unthemed .fc-content,
