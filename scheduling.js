@@ -159,11 +159,11 @@ $calBody.addEventListener('mouseup', (e) => {
           clickedArray.push(clicked);
 
           /*잘 담기고 있는지 test code*/
-          if(clickedArray.length>3) {
+          /*if(clickedArray.length>3) {
             for(var i = 0; i<clickedArray.length; i++) {
               document.writeln(clickedArray[i].date);
             }
-          }
+          }*/
 
           reloadTodo();
       }
