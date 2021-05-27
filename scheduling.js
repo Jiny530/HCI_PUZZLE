@@ -38,17 +38,17 @@ const $calBody = document.querySelector('.cal-body');
 const $btnNext = document.querySelector('.btn-cal.next');
 const $btnPrev = document.querySelector('.btn-cal.prev');
 
+var clickedArray = new Array();
+
 /**
  * @param {number} date
  * @param {number} dayIn
 */
-
 var clickedDate = "";
 
 function loadDate (date, dayIn) {
   clickedDate = date;
 }
-
 /**
  * @param {date} fullDate
  */
@@ -121,30 +121,50 @@ loadDate(init.today.getDate(), init.today.getDay());
 $btnNext.addEventListener('click', () => loadYYMM(init.nextMonth()));
 $btnPrev.addEventListener('click', () => loadYYMM(init.prevMonth()));
 
+
+
+/**
+ * 여기가 캘린더 속 날짜 클릭 시 이벤트임
+ */
 $calBody.addEventListener('mouseup', (e) => {
+  <!-- 우클=세부 -->
   if ((event.button == 2) || (event.which == 3)) {
       if (e.target.classList.contains('day')) {
         if (init.activeDTag) {
-          init.activeDTag.classList.remove('day-active2');
         }
         let day = Number(e.target.textContent);
         loadDate(day, e.target.cellIndex);
         e.target.classList.add('day-active2');
         init.activeDTag = e.target;
         init.activeDate.setDate(day);
+        /*array로 대충 데이터보관*/
+        var clicked = {allday : "no", date: clickedDate};
+        clickedArray.push(clicked);
+
         reloadTodo();
       }
   }
+  <!-- 좌클=전체 -->
   else {
       if (e.target.classList.contains('day')) {
           if (init.activeDTag) {
-            init.activeDTag.classList.remove('day-active');
           }
           let day = Number(e.target.textContent);
           loadDate(day, e.target.cellIndex);
           e.target.classList.add('day-active');
           init.activeDTag = e.target;
           init.activeDate.setDate(day);
+          /*array로 대충 데이터보관*/
+          var clicked = {allday : "yes", date: clickedDate};
+          clickedArray.push(clicked);
+
+          /*잘 담기고 있는지 test code*/
+          if(clickedArray.length>3) {
+            for(var i = 0; i<clickedArray.length; i++) {
+              document.writeln(clickedArray[i].date);
+            }
+          }
+
           reloadTodo();
       }
   }
