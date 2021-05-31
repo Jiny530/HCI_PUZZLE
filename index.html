@@ -25,97 +25,7 @@
 <script src='./packages/core/main.js'></script>
 <script src='./packages/interaction/main.js'></script>
 <script src='./packages/daygrid/main.js'></script>
-<script>
-
-  document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
-
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      plugins: [ 'interaction', 'dayGrid' ],
-      header: {
-        left: 'prevYear,prev,next,nextYear today',
-        center: 'title',
-        right: 'dayGridMonth,dayGridWeek,dayGridDay'
-      },
-      defaultDate: '2021-05-30',
-      navLinks: true, // can click day/week names to navigate views
-      editable: true,
-      eventLimit: true, // allow "more" link when too many events
-      dateClick: function() {
-        alert('a day has been clicked!');
-      },
-      events: [
-        {
-          title: 'All Day Event',
-          start: '2021-05-01',
-          color: 'red'
-        },
-        {
-          title: 'Long Event',
-          start: '2021-05-21',
-          end: '2021-05-23',
-          color: 'green'
-        },
-        {
-          groupId: 999,
-          title: 'Repeating Event',
-          start: '2021-05-10T16:00:00'
-        },
-        {
-          groupId: 999,
-          title: 'Repeating Event',
-          start: '2020-02-16T16:00:00'
-        },
-        {
-          title: 'Conference',
-          start: '2021-05-10',
-          end: '2021-05-13',
-          color: 'green'
-        },
-        {
-          title: 'Meeting',
-          start: '2020-02-12T10:30:00',
-          end: '2020-02-12T12:30:00'
-        },
-        {
-          title: 'Lunch',
-          start: '2020-02-12T12:00:00'
-        },
-        {
-          title: 'Meeting',
-          start: '2020-02-12T14:30:00'
-        },
-        {
-          title: 'Happy Hour',
-          start: '2020-02-12T17:30:00'
-        },
-        {
-          title: 'Dinner',
-          start: '2020-02-12T20:00:00'
-        },
-        {
-          title: 'Birthday Party',
-          start: '2020-02-13T07:00:00'
-        },
-        {
-          title: 'Click for Google',
-          url: 'http://google.com/',
-          start: '2020-02-28'
-        }
-      ]
-    });
-
-    // 이벤트 추가!!
-    calendar.addEvent({
-          title: 'aaaaa',
-          start: '2021-05-25',
-          end: '2021-05-26T12:30:00',
-          color: 'red'
-        });
-    calendar.render();
-  });
-
-</script>
+<script src="./main_calendar.js"></script>
 <style>
 
   body {
@@ -312,6 +222,12 @@
       sidebar.classList.toggle("active");
     }
    </script>
+   
+   <script src="vendor/js/jquery.min.js"></script>
+   <script src="vendor/js/bootstrap.min.js"></script>
+   <script src="vendor/js/moment.min.js"></script>
+   <script src="vendor/js/select2.min.js"></script>
+   <script src="js/addEvent.js"></script>
 
 </body>
 </html>
