@@ -44,6 +44,8 @@
 </head>
 <body>
 
+
+
   <!-- 사이드바 -->
   <div class="sidebar">
     <div class="logo_content">
@@ -61,7 +63,7 @@
         <span class="tooltip">My Calendar</span>
       </li>
       <li>
-        <a href="groupscheduling.html">
+        <a href="#" onclick="openModal()">
           <i class='bx bx-pie-chart-alt-2' ></i>
           <span class="links_name">Group Scheduling</span>
         </a>
@@ -201,14 +203,33 @@
             </div>
         </div>
     </div>
-
   </div>
+  <div class="modal_wrap">
+      <div class="mheader">
+          <button class="mclose" onclick="closeModal()">
+              <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal_title">Choose member</h4>
+      </div>
+      <div class="mcontainer">
+          <div id="mem">member A</div>
+          <div id="mem1">member B</div>
+          <div id="mem2">member C</div>
+          <div id="mem3">member D</div>
+      </div>
+      <button class="mconfirm" onclick="closeModal2()">
+          Confirm
+      </button>
+  </div>
+  <div class="black_bg"></div>
   
   
   <script>
     let btn = document.querySelector("#btn");
     let sidebar = document.querySelector(".sidebar");
     let searchBtn = document.querySelector(".bx-search");
+    let off =  document.querySelector(".mclose");
+    let bg = document.querySelector(".black_bg");
+    let mod = document.querySelector("modal_wrap");
  
     btn.onclick = function() {
       sidebar.classList.toggle("active");
@@ -221,6 +242,23 @@
     searchBtn.onclick = function() {
       sidebar.classList.toggle("active");
     }
+
+    function openModal() {
+        document.querySelector('.modal_wrap').style.display ='block';
+        document.querySelector('.black_bg').style.display ='block';
+    }
+
+    function closeModal() {
+        document.querySelector('.modal_wrap').style.display ='none';
+        document.querySelector('.black_bg').style.display ='none';
+    }
+
+    function closeModal2() {
+        document.querySelector('.modal_wrap').style.display ='none';
+        document.querySelector('.black_bg').style.display ='none';
+        location.href='groupscheduling.html';
+    }
+
    </script>
    
    <script src="vendor/js/jquery.min.js"></script>
