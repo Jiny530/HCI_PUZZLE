@@ -82,6 +82,7 @@ var newEvent = function (start, end, eventType) {
           });
 
         
+          /*
         $("#calendar").fullCalendar('renderEvent', eventData, true);
         eventModal.find('input, textarea').val('');
         editAllDay.prop('checked', false);
@@ -99,6 +100,6 @@ var newEvent = function (start, end, eventType) {
                 //$('#calendar').fullCalendar('removeEvents');
                 //$('#calendar').fullCalendar('refetchEvents');
             }
-        });
+        });*/
     });
 };

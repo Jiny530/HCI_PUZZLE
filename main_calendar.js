@@ -4,72 +4,32 @@ document.addEventListener('DOMContentLoaded', function() {
     var calendar = new FullCalendar.Calendar(calendarEl, {
       plugins: [ 'interaction', 'dayGrid' ],
       header: {
-        left: 'prevYear,prev,next,nextYear today',
-        center: 'title',
+        left: 'prevYear,prev,next,nextYear today  addEventButton',
+        center: 'title ',
         right: 'dayGridMonth,dayGridWeek,dayGridDay'
+      },
+      customButtons: {
+        addEventButton: {
+          text: 'add schedule',
+          click: function(startDate, endDate) {
+            // 일정추가버튼
+            newEvent(startDate, endDate, $(this).html());
+          }
+        }
       },
       views: { 
         month : { eventLimit : 12 } // 한 날짜에 최대 이벤트 12개, 나머지는 + 처리됨
       },
-      defaultDate: '2021-05-30',
+      defaultDate: '2021-06-02',
       navLinks: true, // can click day/week names to navigate views
       editable: true,
       eventLimit: true, // allow "more" link when too many events
+      eventClick : function(info){
+        // 일정 클릭하면 실행되는 부분
+        alert(info);
+      },
       dateClick: function(startDate, endDate, jsEvent, view) {
-
-        // 이전 캘린더 main.js 에서 긁어옴, addschedule 하는 부분
-        $(".fc-body").unbind('click');
-        $(".fc-body").on('click', 'td', function (e) {
-
-          $("#contextMenu")
-            .addClass("contextOpened")
-            .css({
-              display: "block",
-              left: e.pageX,
-              top: e.pageY
-            });
-          return false;
-        });
-
-        var today = moment();
-        
-        /*if (view.name == "month") {
-          startDate.set({
-            hours: today.hours(),
-            minute: today.minutes()});
-          //});
-          startDate = moment(startDate).format('YYYY-MM-DD HH:mm');
-          endDate = moment(endDate).subtract(1, 'days');
-
-          endDate.set({
-            hours: today.hours() + 1,
-            minute: today.minutes()
-          });
-          endDate = moment(endDate).format('YYYY-MM-DD HH:mm');
-        }else {
-          startDate = moment(startDate).format('YYYY-MM-DD HH:mm');
-          endDate = moment(endDate).format('YYYY-MM-DD HH:mm');
-        }*/
-
-        //날짜 클릭시 카테고리 선택메뉴
-        var $contextMenu = $("#contextMenu");
-        $contextMenu.on("click", "a", function (e) {
-          e.preventDefault();
-
-          //닫기 버튼이 아닐때
-          if ($(this).data().role !== 'close') {
-            newEvent(startDate, endDate, $(this).html());
-          }
-
-          $contextMenu.removeClass("contextOpened");
-          $contextMenu.hide();
-        });
-
-        $('body').on('click', function () {
-          $contextMenu.removeClass("contextOpened");
-          $contextMenu.hide();
-        });
-
+        //달력 날짜 클릭하면 실행되는 부분
       },
       events: [
         {
@@ -209,6 +169,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 eventData.allDay = true;
             }
             // 여기서 새로 이벤트 추가됨
+            
             calendar.addEvent({
                 title: eventData.title,
                 start: eventData.start,

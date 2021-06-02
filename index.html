@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" style="overflow-y: scroll;">
 <head>
 <meta charset='utf-8' />
 
@@ -88,6 +88,13 @@
 
   <div class="logo">HCI GROUP 1</div>
 
+    <!-- 프로그래스 바 -->
+  <div class="bar-container">
+    <center>
+    <progress value="70" max="100" style="margin-bottom:20px;" ></progress>
+    </center>
+  </div>
+
   <!-- 캘린더 -->
   <div id='calendar'></div>
 
@@ -136,13 +143,13 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <label class="col-xs-4" for="edit-start">Start</label>
-                            <input class="inputModal" type="text" name="edit-start" id="edit-start" />
+                            <input class="inputModal" type="date" name="edit-start" id="edit-start" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
                             <label class="col-xs-4" for="edit-end">End</label>
-                            <input class="inputModal" type="text" name="edit-end" id="edit-end" />
+                            <input class="inputModal" type="date" name="edit-end" id="edit-end" />
                         </div>
                     </div>
                     <div class="row">
@@ -265,7 +272,7 @@
    <script src="vendor/js/bootstrap.min.js"></script>
    <script src="vendor/js/moment.min.js"></script>
    <script src="vendor/js/select2.min.js"></script>
-   <script src="js/addEvent.js"></script>
+   <!--<script src="js/addEvent.js"></script>-->
 
 </body>
 </html>
