@@ -19,13 +19,14 @@ body{
 }
 
 .logo{
-  font-size: 60px;
+  font-size: 50px;
   font-weight: 600;
   text-align: center;
   line-height: 30px;
   color: #5f56cd;
   user-select: none;
   padding-top: 50px;
+  padding-left: 78px;
   padding-bottom: 40px;
 }
 
@@ -265,3 +266,122 @@ body{
   width: calc(100% - 240px);
   left: 240px;
 }
+
+html, body {
+  height: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+.clearfix:after {
+  content: '';
+  display: block;
+  clear: both;
+  float: none;
+}
+
+/* ======== Calendar ======== */
+
+.my-calendar {
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+  text-align: center;
+  font-weight: 800;
+  border: 1px solid #ddd;
+  cursor: default;
+}
+
+.my-calendar .calendar-box {
+  text-align: center;
+}
+
+.ctr-box {
+  padding: 0 16px;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.ctr-box .btn-cal {
+  position: relative;
+  float: left;
+  width: 25px;
+  height: 25px;
+  margin-top: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+.ctr-box .btn-cal:after {
+  content: '<';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  line-height: 25px;
+  font-weight: bold;
+  font-size: 20px;
+}
+.ctr-box .btn-cal.next {
+  float: right;
+}
+.ctr-box .btn-cal.next:after {
+  content: '>';
+}
+
+.cal-table {
+  width: 100%;
+}
+.cal-table th {
+  width: 14.2857%;
+  padding-bottom: 5px;
+  font-size: 16px;
+  font-weight: 900;
+}
+.cal-table td {
+  padding: 3px 0;
+  height: 100px;
+  font-size: 15px;
+  vertical-align: middle;
+}
+.cal-table td.day {
+  position: relative;
+  cursor: pointer;
+}
+.cal-table td.today {
+  background: #ffd255;
+  border-radius: 5%;
+  color: #fff;
+}
+
+.cal-table td.day-active {
+  background: #ff8585;
+  border-radius: 5%;
+  color: #fff;
+}
+
+.cal-table td.day-active2 {
+  background: #ffc5c5;
+  border-radius: 5%;
+  color: #fff;
+}
+
+.cal-table td.has-event:after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 4px;
+  background: #FFC107
+}
+
+/*context menu*/

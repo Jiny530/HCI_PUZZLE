@@ -74,6 +74,14 @@ var newEvent = function (start, end, eventType) {
             eventData.allDay = true;
         }
 
+        calendar.addEvent({
+            title: eventData.title,
+            start: eventData.start,
+            end: eventData.end,
+            color: eventData.textColor
+          });
+
+        
         $("#calendar").fullCalendar('renderEvent', eventData, true);
         eventModal.find('input, textarea').val('');
         editAllDay.prop('checked', false);

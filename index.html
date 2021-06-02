@@ -1,226 +1,233 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PUZZLE</title>
-    <link rel="stylesheet" href="css/indexstyle.css" />
+<html>
+<head>
+<meta charset='utf-8' />
 
+<link href='./packages/core/main.css' rel='stylesheet' />
+<link href='./packages/daygrid/main.css' rel='stylesheet' />
+<link rel="stylesheet" href="css/indexstyle.css" />
+<link rel="stylesheet" href="vendor/css/bootstrap.min.css">
+<link rel="stylesheet" href='vendor/css/select2.min.css' />
+<link rel="stylesheet" href='vendor/css/bootstrap-datetimepicker.min.css' />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-    <link rel="stylesheet" href="vendor/css/fullcalendar.min.css" />
-    <link rel="stylesheet" href="vendor/css/bootstrap.min.css">
-    <link rel="stylesheet" href='vendor/css/select2.min.css' />
-    <link rel="stylesheet" href='vendor/css/bootstrap-datetimepicker.min.css' />
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+/>
+<link
+  href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+  rel="stylesheet"
+/>
+<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  
+<script src='./packages/core/main.js'></script>
+<script src='./packages/interaction/main.js'></script>
+<script src='./packages/daygrid/main.js'></script>
+<script src="./main_calendar.js"></script>
+<style>
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  body {
+    margin: 40px 10px;
+    padding: 0;
+    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+    font-size: 14px;
+  }
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-  </head>
-  <body>
-    <div class="sidebar">
-      <div class="logo_content">
-        <div class="logo">
-          <div class="logo_name">PUZZLE</div>
-        </div>
-        <i class='bx bx-menu' id="btn" ></i>
+  #calendar {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+</style>
+</head>
+<body>
+
+  <!-- 사이드바 -->
+  <div class="sidebar">
+    <div class="logo_content">
+      <div class="logo">
+        <div class="logo_name">PUZZLE</div>
       </div>
-      <ul class="nav_list">
-        <li>
-          <a href="index.html">
-            <i class='bx bx-grid-alt' ></i>
-            <span class="links_name">My Calendar</span>
-          </a>
-          <span class="tooltip">My Calendar</span>
-        </li>
-        <li>
-          <a href="groupscheduling.html">
-            <i class='bx bx-pie-chart-alt-2' ></i>
-            <span class="links_name">Group Scheduling</span>
-          </a>
-          <span class="tooltip">Group Scheduling</span>
-        </li>
-        <li>
-          <a href="documents.html">
-            <i class='bx bx-folder' ></i>
-            <span class="links_name">Documents</span>
-          </a>
-          <span class="tooltip">Documents</span>
-        </li>
-        
-      </ul>
+      <i class='bx bx-menu' id="btn" ></i>
+    </div>
+    <ul class="nav_list">
+      <li>
+        <a href="index.html">
+          <i class='bx bx-grid-alt' ></i>
+          <span class="links_name">My Calendar</span>
+        </a>
+        <span class="tooltip">My Calendar</span>
+      </li>
+      <li>
+        <a href="groupscheduling.html">
+          <i class='bx bx-pie-chart-alt-2' ></i>
+          <span class="links_name">Group Scheduling</span>
+        </a>
+        <span class="tooltip">Group Scheduling</span>
+      </li>
+      <li>
+        <a href="documents.html">
+          <i class='bx bx-folder' ></i>
+          <span class="links_name">Documents</span>
+        </a>
+        <span class="tooltip">Documents</span>
+      </li>
+      
+    </ul>
 
-      <div class="profile_content">
-        <div class="profile">
-          <i class='bx bx-log-out' id="log_out" onclick="location.href='login.html'" ></i>
-        </div>
+    <div class="profile_content">
+      <div class="profile">
+        <i class='bx bx-log-out' id="log_out" onclick="location.href='login.html'" ></i>
       </div>
     </div>
+  </div>
 
-    <div class="logo">HCI GROUP 1</div>
+  <div class="logo">HCI GROUP 1</div>
 
-    <!--진행 바-->
-    <div class="bar-container">
-      <center>
-			<progress value="70" max="100" style="margin-bottom:20px;" ></progress>
-      </center>
-		</div>
+  <!-- 캘린더 -->
+  <div id='calendar'></div>
 
-    <!--캘린더 존-->
-    <div class="container">
+  <!-- 일정추가 부분인데, 현재는 먹지않음-->
+  <div class="container">
 
-      <!-- 일자 클릭시 메뉴오픈 -->
-      <div id="contextMenu" class="dropdown clearfix">
-          <ul class="dropdown-menu dropNewEvent" role="menu" aria-labelledby="dropdownMenu"
-              style="display:block;position:static;margin-bottom:5px;">
-              <li><a tabindex="-1" href="#">Add schedule</a></li>
-              <li class="divider"></li>
-              <li><a tabindex="-1" href="#" data-role="close">Close</a></li>
-          </ul>
-      </div>
+    <div id="contextMenu" class="dropdown clearfix">
+        <ul class="dropdown-menu dropNewEvent" role="menu" aria-labelledby="dropdownMenu"
+            style="display:block;position:static;margin-bottom:5px;">
+            <li><a tabindex="-1" href="#">Add schedule</a></li>
+            <li class="divider"></li>
+            <li><a tabindex="-1" href="#" data-role="close">Close</a></li>
+        </ul>
+    </div>
 
-      <div id="wrapper">
-          <div id="loading"></div>
-          <div id="calendar"></div>
-      </div>
+    <div id="wrapper">
+        <div id="loading"></div>
+        <div id="calendar"></div>
+    </div>
 
 
-      <!-- 일정 추가 MODAL -->
-      <div class="modal fade" tabindex="-1" role="dialog" id="eventModal">
-          <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                              aria-hidden="true">&times;</span></button>
-                      <h4 class="modal-title"></h4>
-                  </div>
-                  <div class="modal-body">
+    <div class="modal fade" tabindex="-1" role="dialog" id="eventModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
 
-                      <div class="row">
-                          <div class="col-xs-12">
-                              <label class="col-xs-4" for="edit-allDay">All-Day</label>
-                              <input class='allDayNewEvent' id="edit-allDay" type="checkbox"></label>
-                          </div>
-                      </div>
-
-                      <div class="row">
-                          <div class="col-xs-12">
-                              <label class="col-xs-4" for="edit-title">Task</label>
-                              <input class="inputModal" type="text" name="edit-title" id="edit-title"
-                                  required="required" />
-                          </div>
-                      </div>
-                      <div class="row">
-                          <div class="col-xs-12">
-                              <label class="col-xs-4" for="edit-start">Start</label>
-                              <input class="inputModal" type="text" name="edit-start" id="edit-start" />
-                          </div>
-                      </div>
-                      <div class="row">
-                          <div class="col-xs-12">
-                              <label class="col-xs-4" for="edit-end">End</label>
-                              <input class="inputModal" type="text" name="edit-end" id="edit-end" />
-                          </div>
-                      </div>
-                      <div class="row">
-                          <div class="col-xs-12">
-                              <label class="col-xs-4" for="edit-type">Contents</label>
-                              <select class="inputModal" type="text" name="edit-type" id="edit-type">
-                                  <option value="카테고리1">Team Meeting</option>
-                                  <option value="카테고리2">Personal</option>
-                                  <option value="카테고리3">School</option>
-                                  <option value="카테고리4">D-day</option>
-                              </select>
-                          </div>
-                      </div>
-                      <div class="row">
-                          <div class="col-xs-12">
-                              <label class="col-xs-4" for="edit-end">Paticipant</label>
-                              <label><input type="checkbox" >Tim </label>
-                              <label><input type="checkbox">Henry</label>
-                              <label><input type="checkbox">Cathy</label>
-                              <label><input type="checkbox">Emma</label>
-                          </div>
-                      </div>
-                      <div class="row">
-                          <div class="col-xs-12">
-                              <label class="col-xs-4" for="edit-color">Color</label>
-                              <select class="inputModal" name="color" id="edit-color">
-                                  <option value="#D25565" style="color:#D25565;">Red</option>
-                                  <option value="#9775fa" style="color:#9775fa;">Purple</option>
-                                  <option value="#ffa94d" style="color:#ffa94d;">Orange</option>
-                                  <option value="#74c0fc" style="color:#74c0fc;">Blue</option>
-                              </select>
-                          </div>
-                      </div>
-                      <div class="row">
-                          <div class="col-xs-12">
-                              <label class="col-xs-4" for="edit-desc">Description</label>
-                              <textarea rows="4" cols="50" class="inputModal" name="edit-desc"
-                                  id="edit-desc"></textarea>
-                          </div>
-                      </div>
-                      <div class="row">
+                    <div class="row">
                         <div class="col-xs-12">
-                            <label class="col-xs-4" for="edit-desc">File-Drag</label>
+                            <label class="col-xs-4" for="edit-allDay">All-Day</label>
+                            <input class='allDayNewEvent' id="edit-allDay" type="checkbox"></label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label class="col-xs-4" for="edit-title">Task</label>
+                            <input class="inputModal" type="text" name="edit-title" id="edit-title"
+                                required="required" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label class="col-xs-4" for="edit-start">Start</label>
+                            <input class="inputModal" type="text" name="edit-start" id="edit-start" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label class="col-xs-4" for="edit-end">End</label>
+                            <input class="inputModal" type="text" name="edit-end" id="edit-end" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label class="col-xs-4" for="edit-type">Contents</label>
+                            <select class="inputModal" type="text" name="edit-type" id="edit-type">
+                                <option value="카테고리1">Team Meeting</option>
+                                <option value="카테고리2">Personal</option>
+                                <option value="카테고리3">School</option>
+                                <option value="카테고리4">D-day</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label class="col-xs-4" for="edit-end">Paticipant</label>
+                            <label><input type="checkbox" >Tim </label>
+                            <label><input type="checkbox">Henry</label>
+                            <label><input type="checkbox">Cathy</label>
+                            <label><input type="checkbox">Emma</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label class="col-xs-4" for="edit-color">Color</label>
+                            <select class="inputModal" name="color" id="edit-color">
+                                <option value="#D25565" style="color:#D25565;">Red</option>
+                                <option value="#9775fa" style="color:#9775fa;">Purple</option>
+                                <option value="#ffa94d" style="color:#ffa94d;">Orange</option>
+                                <option value="#74c0fc" style="color:#74c0fc;">Blue</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label class="col-xs-4" for="edit-desc">Description</label>
                             <textarea rows="4" cols="50" class="inputModal" name="edit-desc"
                                 id="edit-desc"></textarea>
                         </div>
                     </div>
+                    <div class="row">
+                      <div class="col-xs-12">
+                          <label class="col-xs-4" for="edit-desc">File-Drag</label>
+                          <textarea rows="4" cols="50" class="inputModal" name="edit-desc"
+                              id="edit-desc"></textarea>
+                      </div>
                   </div>
-                  <div class="modal-footer modalBtnContainer-addEvent">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
-                      <button type="button" class="btn btn-primary" id="save-event">Save</button>
-                  </div>
-                  <div class="modal-footer modalBtnContainer-modifyEvent">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
-                      <button type="button" class="btn btn-danger" id="deleteEvent">Delete</button>
-                      <button type="button" class="btn btn-primary" id="updateEvent">Save</button>
-                  </div>
-              </div><!-- /.modal-content -->
-          </div><!-- /.modal-dialog -->
-      </div><!-- /.modal -->
+                </div>
+                <div class="modal-footer modalBtnContainer-addEvent">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
+                    <button type="button" class="btn btn-primary" id="save-event">Save</button>
+                </div>
+                <div class="modal-footer modalBtnContainer-modifyEvent">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
+                    <button type="button" class="btn btn-danger" id="deleteEvent">Delete</button>
+                    <button type="button" class="btn btn-primary" id="updateEvent">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
   </div>
-  <!-- /.container -->
-    
-    <script>
-      let btn = document.querySelector("#btn");
-      let sidebar = document.querySelector(".sidebar");
-      let searchBtn = document.querySelector(".bx-search");
+  
+  
+  <script>
+    let btn = document.querySelector("#btn");
+    let sidebar = document.querySelector(".sidebar");
+    let searchBtn = document.querySelector(".bx-search");
+ 
+    btn.onclick = function() {
+      sidebar.classList.toggle("active");
+      if(btn.classList.contains("bx-menu")){
+        btn.classList.replace("bx-menu" , "bx-menu-alt-right");
+      }else{
+        btn.classList.replace("bx-menu-alt-right", "bx-menu");
+      }
+    }
+    searchBtn.onclick = function() {
+      sidebar.classList.toggle("active");
+    }
+   </script>
    
-      btn.onclick = function() {
-        sidebar.classList.toggle("active");
-        if(btn.classList.contains("bx-menu")){
-          btn.classList.replace("bx-menu" , "bx-menu-alt-right");
-        }else{
-          btn.classList.replace("bx-menu-alt-right", "bx-menu");
-        }
-      }
-      searchBtn.onclick = function() {
-        sidebar.classList.toggle("active");
-      }
-     </script>
-     
-      <script src="script.js"></script>
-      <script src="vendor/js/jquery.min.js"></script>
-      <script src="vendor/js/bootstrap.min.js"></script>
-      <script src="vendor/js/moment.min.js"></script>
-      <script src="vendor/js/fullcalendar.min.js"></script>
-      <script src="vendor/js/ko.js"></script>
-      <script src="vendor/js/select2.min.js"></script>
-      <script src="vendor/js/bootstrap-datetimepicker.min.js"></script>
-      <script src="js/main.js"></script>
-      <script src="js/addEvent.js"></script>
-      <script src="js/editEvent.js"></script>
-      <script src="js/etcSetting.js"></script>
-  </body>
+   <script src="vendor/js/jquery.min.js"></script>
+   <script src="vendor/js/bootstrap.min.js"></script>
+   <script src="vendor/js/moment.min.js"></script>
+   <script src="vendor/js/select2.min.js"></script>
+   <script src="js/addEvent.js"></script>
+
+</body>
 </html>
