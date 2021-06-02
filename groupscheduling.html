@@ -85,12 +85,19 @@
         </div>
       </div>
       <!-- // .my-calendar -->
+      <button class="ok_button" onclick="confirm_gohome();">
+        Confirm Schedule
+      </button>
+      <button class="back_button" onclick="delete_gohome();">
+        Go Back
+      </button>
     </div>
 
   <script>
    let btn = document.querySelector("#btn");
    let sidebar = document.querySelector(".sidebar");
    let searchBtn = document.querySelector(".bx-search");
+   let confirm = document.querySelector(".ok_button");
 
    btn.onclick = function() {
      sidebar.classList.toggle("active");
