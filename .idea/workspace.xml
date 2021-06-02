@@ -36,19 +36,6 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Unnamed" type="NodeJSConfigurationType" path-to-node="D:/Program Files (x86)/node" nameIsGenerated="true" working-dir="$PROJECT_DIR$">
       <EXTENSION ID="com.jetbrains.nodejs.run.NodeJSStartBrowserRunConfigurationExtension">
         <browser name="b2a9dca7-9d0b-4e1e-98a8-afb19c1328d2" start="true" url="http://localhost:3000" />
@@ -66,6 +53,7 @@
       <updated>1622028027123</updated>
       <workItem from="1622098560977" duration="1101000" />
       <workItem from="1622099930427" duration="4130000" />
+      <workItem from="1622623021613" duration="6741000" />
     </task>
     <task id="LOCAL-00001" summary="scheduling calendar">
       <created>1622085667144</created>
@@ -104,6 +92,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="scheduling calendar" />
