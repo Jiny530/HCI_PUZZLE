@@ -10,19 +10,37 @@
       <div class="title">Login</div>
       <form action="#">
         <div class="field">
-          <input type="text" required>
+          <input id="ID" type="text" required>
           <label>ID</label>
         </div>
         <div class="field">
-          <input type="password" required>
+          <input id="psw" type="password" required>
           <label>Password</label>
         </div>
         <div class="pass-link"><a href="#">Forgot password?</a></div>
         <div class="field">
-          <input type="button" value="Login" onclick="location.href='index.html'">
+          <input type="button" value="Login" onclick="login()">
         </div>
         <div class="signup-link">Not a member? <a href="#">Signup now</a></div>
       </form>
     </div>
+    <script src="vendor/js/jquery.min.js"></script>
+    <script>
+      function login(){
+        var id_text = $('#ID');
+        var password = $('#psw');
+        if (id_text.val() === '') {
+          alert('ID is necessary.');
+          return false;
+        }
+        if (password.val() === '') {
+          alert('Password is necessary.');
+          return false;
+        }
+
+        location.href='index.html'
+      }
+      
+    </script>
   </body>
 </html>
