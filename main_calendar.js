@@ -1,7 +1,8 @@
+var calendar;
 document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
 
-    var calendar = new FullCalendar.Calendar(calendarEl, {
+    calendar = new FullCalendar.Calendar(calendarEl, {
       plugins: [ 'interaction', 'dayGrid' ],
       header: {
         left: 'prevYear,prev,next,nextYear today  addEventButton',
@@ -26,69 +27,75 @@ document.addEventListener('DOMContentLoaded', function() {
       eventLimit: true, // allow "more" link when too many events
       eventClick : function(info){
         // 일정 클릭하면 실행되는 부분
-        alert(info);
+        if (info.event.title != 'Tim' && info.event.title != 'Henry' && info.event.title != 'Cathy' && info.event.title != 'Emma')
+        {
+            
+          $('#modalTitle').html(info.event.title);/*
+          $('#time').html('Date\t:\t',info.event.extendedProps.start);
+          $('#participants').html('Participants\t:\tTim\tHenrry');
+          $('#place').html('Place\t:\tA101');
+          $('#description').html('Description\t:\t',info.event.extendedProps.description);*/
+          //$('#eventUrl').attr('href',event.url);
+          $('#calendarModal').modal();
+        }
       },
       dateClick: function(startDate, endDate, jsEvent, view) {
         //달력 날짜 클릭하면 실행되는 부분
       },
       events: [
         {
-          title: 'All Day Event',
-          start: '2021-05-01',
-          color: 'red'
+          title: 'Tim',
+          start: '2021-06-01',
+          end: '2021-06-03',
+          color: '#D25565',
+          description: ''
         },
         {
-          title: 'Long Event',
-          start: '2021-05-21',
-          end: '2021-05-23',
-          color: 'green'
+          title: 'Henry',
+          start: '2021-06-02',
+          end: '2021-06-04',
+          color: '#b1fc74',
+          description: ''
         },
         {
-          groupId: 999,
-          title: 'Repeating Event',
-          start: '2021-05-10T16:00:00'
+          title: 'Cathy',
+          start: '2021-06-08',
+          end: '2021-06-10',
+          color: '#ffa94d',
+          description: ''
         },
         {
-          groupId: 999,
-          title: 'Repeating Event',
-          start: '2020-02-16T16:00:00'
+          title: 'Emma',
+          start: '2021-06-01',
+          color: '#74c0fc',
+          description: ''
         },
         {
-          title: 'Conference',
-          start: '2021-05-10',
-          end: '2021-05-13',
-          color: 'green'
+          title: 'Team meeting',
+          start: '2021-06-05',
+          color: '#9775fa',
+          description: ''
         },
         {
-          title: 'Meeting',
-          start: '2020-02-12T10:30:00',
-          end: '2020-02-12T12:30:00'
+          title: 'Low-fi prototyping',
+          start: '2021-06-10',
+          end: '2021-06-12',
+          color: '#9775fa',
+          description: ''
         },
         {
-          title: 'Lunch',
-          start: '2020-02-12T12:00:00'
+          title: 'Heuristic evaluation',
+          start: '2021-06-14',
+          color: '#9775fa',
+          description: ''
         },
         {
-          title: 'Meeting',
-          start: '2020-02-12T14:30:00'
+          title: 'Hi-fi prototyping',
+          start: '2021-06-22',
+          color: '#9775fa',
+          description: ''
         },
-        {
-          title: 'Happy Hour',
-          start: '2020-02-12T17:30:00'
-        },
-        {
-          title: 'Dinner',
-          start: '2020-02-12T20:00:00'
-        },
-        {
-          title: 'Birthday Party',
-          start: '2020-02-13T07:00:00'
-        },
-        {
-          title: 'Click for Google',
-          url: 'http://google.com/',
-          start: '2020-02-28'
-        }
+        
       ]
     });
 
@@ -107,14 +114,13 @@ document.addEventListener('DOMContentLoaded', function() {
     var addBtnContainer = $('.modalBtnContainer-addEvent');
     var modifyBtnContainer = $('.modalBtnContainer-modifyEvent');
 
-
     /* ****************
     *  새로운 일정 생성
     * ************** */
     var newEvent = function (start, end, eventType) {
 
         $("#contextMenu").hide(); //메뉴 숨김
-
+        
         modalTitle.html('New Task');
         editType.val(eventType).prop('selected', true);
         editTitle.val('');
@@ -126,16 +132,36 @@ document.addEventListener('DOMContentLoaded', function() {
         modifyBtnContainer.hide();
         eventModal.modal('show');
 
+        var m1 = document.getElementById('Tim');
+        var m2 = document.getElementById('Henry');
+        var m3 = document.getElementById('Cathy');
+        var m4 = document.getElementById('Emma');
+        var sum=0;
+
         /******** 임시 RAMDON ID - 실제 DB 연동시 삭제 **********/
         var eventId = 1 + Math.floor(Math.random() * 1000);
-        /******** 임시 RAMDON ID - 실제 DB 연동시 삭제 **********/
+        /******** 임시 RAMDON ID - 실제 DB 연동시 삭제 *********/
 
         //새로운 일정 저장버튼 클릭
         $('#save-event').unbind();
         $('#save-event').on('click', function () {
 
+          //멤버 누구누구 참여하는지 비트로 구분
+          if ($(m1).prop("checked")){
+            sum+=1;
+          }
+          if ($(m2).prop("checked")){
+            sum+=2;
+          }
+          if ($(m3).prop("checked")){
+            sum+=4;
+          }
+          if ($(m4).prop("checked")){
+            sum+=8;
+          }
+
             var eventData = {
-                _id: eventId,
+                _id: String(sum),
                 title: editTitle.val(),
                 start: editStart.val(),
                 end: editEnd.val(),
@@ -171,6 +197,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // 여기서 새로 이벤트 추가됨
             
             calendar.addEvent({
+                id: eventData._id,
                 title: eventData.title,
                 start: eventData.start,
                 end: eventData.end,

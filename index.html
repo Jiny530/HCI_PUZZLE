@@ -40,6 +40,30 @@
     margin: 0 auto;
   }
 
+  progress {
+    height: 50px;
+    width: 900px;
+  }
+
+  #schedulingBtn  {
+    font-size:1.5em;
+    color: rgb(49, 49, 49);
+    background:rgb(197, 247, 148); 
+    padding:10px 50px;
+    border:0;
+    outline: 0;
+    border-radius: 5px;
+  }
+
+  #remindBtn  {
+    font-size:1.5em;
+    color: rgb(49, 49, 49);
+    background:rgb(241, 222, 255); 
+    padding:10px 50px;
+    border:0;
+    outline: 0;
+    border-radius: 5px;
+  }
 </style>
 </head>
 <body>
@@ -88,17 +112,88 @@
 
   <div class="logo">HCI GROUP 1</div>
 
-    <!-- 프로그래스 바 -->
+    <!-- 리마인드 알림 뜨는곳 -->
   <div class="bar-container">
     <center>
-    <progress value="70" max="100" style="margin-bottom:20px;" ></progress>
+      <button id="schedulingBtn" style = 'display: none' onclick="aa()">You need to check date!</button>
+      <button id="remindBtn" onclick="openReminder()">5 days until "Hi-fi prototyping"!</button>
     </center>
+    
   </div>
 
+  <div id="remindView" class="modal fade" style="margin-top:100px;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- 캘린더 -->
   <div id='calendar'></div>
 
-  <!-- 일정추가 부분인데, 현재는 먹지않음-->
+  <!--일정 상세 창-->
+  <div id="calendarModal" class="modal fade" style="margin-top:100px;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+                <h4 id="modalTitle" class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <ul>
+                  <blockquote>
+                    <blockquote>
+                      <li class="col-xs-12">
+                        <label id="time" class="modal-body">aa</label>
+                      </li>
+                      <li class="col-xs-12">
+                        <label id="time" class="modal-body">aa</label>
+                      </li>
+                    </blockquote>
+                  </blockquote>
+                </ul>
+
+                <p class="col-xs-12">
+                  <label id="time" class="modal-body">- aa</label>
+                </p>
+
+              </div>
+              <div class="row">
+                <p class="col-xs-12">
+                  <label id="participants" class="modal-body">- bb</label>
+                </p>
+                
+              </div>
+              <div class="row">
+                <p class="col-xs-12">
+                  <label id="place" class="modal-body">cc</label>
+                </p>
+                
+              </div>
+              <div class="row">
+                <p class="col-xs-12">
+                  <label id="description" class="modal-body">dd</label>
+                </p>
+                
+              </div>   
+            </div>
+            
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!-- 일정추가-->
   <div class="container">
 
     <div id="contextMenu" class="dropdown clearfix">
@@ -166,23 +261,24 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <label class="col-xs-4" for="edit-end">Paticipant</label>
-                            <label><input type="checkbox" >Tim </label>
-                            <label><input type="checkbox">Henry</label>
-                            <label><input type="checkbox">Cathy</label>
-                            <label><input type="checkbox">Emma</label>
+                            <label><input id="Tim" type="checkbox">Tim </label>
+                            <label><input id="Henry" type="checkbox">Henry</label>
+                            <label><input id="Cathy" type="checkbox">Cathy</label>
+                            <label><input id="Emma" type="checkbox">Emma</label>
                         </div>
                     </div>
-                    <div class="row">
+                    <!--div class="row">
                         <div class="col-xs-12">
                             <label class="col-xs-4" for="edit-color">Color</label>
                             <select class="inputModal" name="color" id="edit-color">
                                 <option value="#D25565" style="color:#D25565;">Red</option>
                                 <option value="#9775fa" style="color:#9775fa;">Purple</option>
                                 <option value="#ffa94d" style="color:#ffa94d;">Orange</option>
+                                <option value="#74c0fc" style="color:#b1fc74;">Blue</option>
                                 <option value="#74c0fc" style="color:#74c0fc;">Blue</option>
                             </select>
                         </div>
-                    </div>
+                    </div-->
                     <div class="row">
                         <div class="col-xs-12">
                             <label class="col-xs-4" for="edit-desc">Description</label>
@@ -218,18 +314,22 @@
           <h4 class="modal_title">Choose member</h4>
       </div>
       <div class="mcontainer">
-          <div id="mem">member A</div>
-          <div id="mem1">member B</div>
-          <div id="mem2">member C</div>
-          <div id="mem3">member D</div>
+          <div id="mem">Tim</div>
+          <div id="mem1">Henry</div>
+          <div id="mem2">Cathy</div>
+          <div id="mem3">Emma</div>
       </div>
-      <button class="mconfirm" onclick="closeModal2()">
+      <button class="mconfirm" onclick="groupSchedule()">
           Confirm
       </button>
   </div>
   <div class="black_bg"></div>
   
   
+  <script src="vendor/js/jquery.min.js"></script>
+  <script src="vendor/js/bootstrap.min.js"></script>
+  <script src="vendor/js/moment.min.js"></script>
+  <script src="vendor/js/select2.min.js"></script>
   <script>
     let btn = document.querySelector("#btn");
     let sidebar = document.querySelector(".sidebar");
@@ -255,23 +355,33 @@
         document.querySelector('.black_bg').style.display ='block';
     }
 
+    function openReminder(){
+      $('#remindView').modal();
+    }
     function closeModal() {
         document.querySelector('.modal_wrap').style.display ='none';
         document.querySelector('.black_bg').style.display ='none';
     }
 
-    function closeModal2() {
-        document.querySelector('.modal_wrap').style.display ='none';
-        document.querySelector('.black_bg').style.display ='none';
-        location.href='groupscheduling.html';
+    function groupSchedule() {
+      $("#remindBtn").hide();
+      $("#schedulingBtn").show();
+      
+      document.querySelector('.modal_wrap').style.display ='none';
+      document.querySelector('.black_bg').style.display ='none';
+        
+    }
+
+    function aa(){
+      location.href='groupscheduling.html'
+      
+      //이거는 그룹스케줄링에서 돌아올때 넣기
+      $("#schedulingBtn").hide();
+      $("#remindBtn").show();
     }
 
    </script>
    
-   <script src="vendor/js/jquery.min.js"></script>
-   <script src="vendor/js/bootstrap.min.js"></script>
-   <script src="vendor/js/moment.min.js"></script>
-   <script src="vendor/js/select2.min.js"></script>
    <!--<script src="js/addEvent.js"></script>-->
 
 </body>
