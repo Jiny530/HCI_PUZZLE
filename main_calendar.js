@@ -51,9 +51,30 @@ document.addEventListener('DOMContentLoaded', function() {
           description: ''
         },
         {
+          title: 'Tim',
+          start: '2021-06-20',
+          end: '2021-06-03',
+          color: '#D25565',
+          description: ''
+        },
+        {
+          title: 'Tim',
+          start: '2021-06-16',
+          end: '2021-06-19',
+          color: '#D25565',
+          description: ''
+        },
+        {
           title: 'Henry',
-          start: '2021-06-02',
-          end: '2021-06-04',
+          start: '2021-06-07',
+          end: '2021-06-09',
+          color: '#b1fc74',
+          description: ''
+        },
+        {
+          title: 'Henry',
+          start: '2021-06-23',
+          end: '2021-06-24',
           color: '#b1fc74',
           description: ''
         },
@@ -65,8 +86,28 @@ document.addEventListener('DOMContentLoaded', function() {
           description: ''
         },
         {
+          title: 'Cathy',
+          start: '2021-06-20',
+          color: '#ffa94d',
+          description: ''
+        },
+        {
           title: 'Emma',
-          start: '2021-06-01',
+          start: '2021-06-12',
+          end: '2021-06-13',
+          color: '#74c0fc',
+          description: ''
+        },
+        {
+          title: 'Emma',
+          start: '2021-06-02',
+          color: '#74c0fc',
+          description: ''
+        },
+        {
+          title: 'Emma',
+          start: '2021-06-30',
+          end: '2021-07-02',
           color: '#74c0fc',
           description: ''
         },
