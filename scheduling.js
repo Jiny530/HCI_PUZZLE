@@ -42,6 +42,7 @@ var clickedArray = new Array();
 var start = new Date();
 var end = new Date();
 var chose;
+var activeArr = [21, 22, 24, 25, 26, 27, 28, 29];
 
 /**
  * @param {number} date
@@ -84,8 +85,13 @@ function loadYYMM (fullDate) {
       if (!startCount) {
         trtd += '<td>'
       } else {
+        let de = true;
         let fullDate = yy + '.' + init.addZero(mm + 1) + '.' + init.addZero(countDay + 1);
+        for(let k = 0; k<activeArr.length; k++) {
+          if(fullDate === "2021.06." + String(activeArr[k])) de = false;
+        }
         trtd += '<td class="day';
+        trtd += (de === true) ? ' day-deactive" ' : '"';
         trtd += (markToday && markToday === countDay + 1) ? ' today" ' : '"';
         trtd += ` data-date="${countDay + 1}" data-fdate="${fullDate}">`;
       }
@@ -94,6 +100,7 @@ function loadYYMM (fullDate) {
         startCount = 0;
       }
       trtd += '</td>';
+
     }
     trtd += '</tr>';
   }
@@ -136,7 +143,7 @@ $calBody.addEventListener('mouseup', (e) => {
 
   <!-- 우클=세부 -->
   if ((event.button == 2) || (event.which == 3)) {
-      if (e.target.classList.contains('day')) {
+      if (e.target.classList.contains('day') && !e.target.classList.contains('day-deactive')) {
         let day = Number(e.target.textContent);
         chose = e.target;
         loadDate(day, e.target.cellIndex);
@@ -147,7 +154,7 @@ $calBody.addEventListener('mouseup', (e) => {
   }
   <!-- 좌클=전체 -->
   else {
-      if (e.target.classList.contains('day')) {
+      if (e.target.classList.contains('day') && !e.target.classList.contains('day-deactive')) {
           let day = Number(e.target.textContent);
           loadDate(day, e.target.cellIndex);
           var cDate = new Date(clickedYearMonth+'-'+clickedDate);

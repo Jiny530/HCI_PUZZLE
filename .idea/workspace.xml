@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="19f47315-317d-4cdb-a5b8-3c7b8d3051fd" name="Default Changelist" comment="데이터 연결">
+    <list default="true" id="19f47315-317d-4cdb-a5b8-3c7b8d3051fd" name="Default Changelist" comment="그룹 스케쥴링 완료">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/groupstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/groupstyle.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/indexstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/indexstyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/groupscheduling.html" beforeDir="false" afterPath="$PROJECT_DIR$/groupscheduling.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scheduling.js" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling.js" afterDir="false" />
     </list>
@@ -65,7 +64,8 @@
       <workItem from="1622099930427" duration="4130000" />
       <workItem from="1622623021613" duration="7038000" />
       <workItem from="1622631534794" duration="8603000" />
-      <workItem from="1622872459913" duration="24445000" />
+      <workItem from="1622872459913" duration="24687000" />
+      <workItem from="1622903114072" duration="3591000" />
     </task>
     <task id="LOCAL-00001" summary="scheduling calendar">
       <created>1622085667144</created>
@@ -109,7 +109,14 @@
       <option name="project" value="LOCAL" />
       <updated>1622883554516</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="그룹 스케쥴링 완료">
+      <created>1622900150519</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1622900150519</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -133,7 +140,8 @@
     <MESSAGE value="스케쥴링 알람 받았을때 캘린더에서 스케쥴 고르는 페이지 완료!&#10;다만 현재는 이코드가 groupscheduling.html에 작성되어있음&#10;원래 groupscheduling은 매니저가 일정요청 날리는 페이지인데...일단 중요 기능 구현완료!" />
     <MESSAGE value="member 설정하는 팝업 띄우기 완료" />
     <MESSAGE value="데이터 연결" />
-    <option name="LAST_COMMIT_MESSAGE" value="데이터 연결" />
+    <MESSAGE value="그룹 스케쥴링 완료" />
+    <option name="LAST_COMMIT_MESSAGE" value="그룹 스케쥴링 완료" />
   </component>
   <component name="XPathView.XPathProjectComponent">
     <history />

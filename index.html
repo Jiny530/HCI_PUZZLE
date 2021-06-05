@@ -322,7 +322,13 @@
           <div class="mem1" onclick="changeH()">Henry</div>
           <div class="mem2" onclick="changeC()">Cathy</div>
           <div class="mem3" onclick="changeE()">Emma</div>
+          <div class="name">
+              <label class="n">Task Name</label>
+              <input type="text" id="mname" value="Task">
+          </div> <div class="name">
       </div>
+      </div>
+
       <button class="mconfirm" onclick="groupSchedule()">
           Confirm
       </button>
@@ -339,6 +345,7 @@
     let btn = document.querySelector("#btn");
     let sidebar = document.querySelector(".sidebar");
     let searchBtn = document.querySelector(".bx-search");
+    let taskName = document.querySelector("#mname").value;
 
     $(document).ready(function () {
         var scheduleList;
@@ -385,6 +392,7 @@
     }
 
     function groupSchedule() {
+      taskName = document.querySelector('#mname').value;
       document.querySelector('.modal_wrap').style.display ='none';
       document.querySelector('.black_bg').style.display ='none';
       $("#remindBtn").hide();
