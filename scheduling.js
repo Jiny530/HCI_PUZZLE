@@ -39,11 +39,15 @@ const $btnNext = document.querySelector('.btn-cal.next');
 const $btnPrev = document.querySelector('.btn-cal.prev');
 
 var clickedArray = new Array();
+var start = new Date();
+var end = new Date();
+var chose;
 
 /**
  * @param {number} date
  * @param {number} dayIn
 */
+var clickedYearMonth="";
 var clickedDate = "";
 
 function loadDate (date, dayIn) {
@@ -58,6 +62,8 @@ function loadYYMM (fullDate) {
   let firstDay = init.getFirstDay(yy, mm);
   let lastDay = init.getLastDay(yy, mm);
   let markToday;  // for marking today date
+
+  clickedYearMonth += yy+'-'+(mm+1);
 
   if (mm === init.today.getMonth() && yy === init.today.getFullYear()) {
     markToday = init.today.getDate();
@@ -132,33 +138,11 @@ $calBody.addEventListener('mouseup', (e) => {
   if ((event.button == 2) || (event.which == 3)) {
       if (e.target.classList.contains('day')) {
         let day = Number(e.target.textContent);
+        chose = e.target;
         loadDate(day, e.target.cellIndex);
-
-        var delnum = false;
-        var clicked = {allday : "no", date: clickedDate};
-
-        /*array로 대충 데이터보관*/
-        for(var i = 0; i<clickedArray.length; i++) {
-          var prev = clickedArray[i];
-          if(clicked.date == prev.date) {
-            if(e.target.classList.contains('day-active')) {
-              e.target.classList.remove('day-active')
-              clickedArray.splice(i, 1);
-            }
-            else if(e.target.classList.contains('day-active2')) {
-              e.target.classList.remove('day-active2');
-              clickedArray.splice(i, 1);
-              delnum=true;
-            }
-          }
-        }
-        if(delnum==false) {
-          clickedArray.push(clicked);
-          e.target.classList.add('day-active2');
-        }
-        init.activeDTag = e.target;
-        init.activeDate.setDate(day);
-        reloadTodo();
+        var cDate = new Date(clickedYearMonth+'-'+clickedDate);
+        start = cDate;
+        openModal(day);
       }
   }
   <!-- 좌클=전체 -->
@@ -166,9 +150,11 @@ $calBody.addEventListener('mouseup', (e) => {
       if (e.target.classList.contains('day')) {
           let day = Number(e.target.textContent);
           loadDate(day, e.target.cellIndex);
-
+          var cDate = new Date(clickedYearMonth+'-'+clickedDate);
+          start = cDate;
           var delnum = false;
-          var clicked = {allday : "yes", date: clickedDate};
+
+          var clicked = {allday : "yes", start: start, end:"none"};
 
           /*array로 대충 데이터보관*/
           for(var i = 0; i<clickedArray.length; i++) {
@@ -191,17 +177,18 @@ $calBody.addEventListener('mouseup', (e) => {
           }
           init.activeDTag = e.target;
           init.activeDate.setDate(day);
-          reloadTodo();
         }
   }
 });
 
 //스케쥴 완료!
 function confirm_gohome() {
+  min = Math.ceil(0);
+  max = Math.floor(clickedArray.length);
+  var n = Math.floor(Math.random() * (max - min)) + min;
+
   var url = "index.html?index&";
-  for(var i=0; i<clickedArray.length; i++) {
-    url += clickedArray[i].allday + "=" + clickedArray[i].date + "&";
-  }
+  url += clickedArray[n].allday + "=" + clickedArray[n].start + "=" + clickedArray[n].end + "&";
   window.location.href = url;
 }
 
@@ -218,3 +205,64 @@ function clearArray(array) {
     array.pop();
   }
 }
+
+function openModal(day) {
+  document.querySelector('.modal_wrap').style.display ='block';
+  document.querySelector('.black_bg').style.display ='block';
+  document.querySelector('.mcontainer').value = day;
+}
+
+function closeModal() {
+  document.querySelector('.modal_wrap').style.display ='none';
+  document.querySelector('.black_bg').style.display ='none';
+}
+
+function groupSchedule() {
+  let startHour = document.querySelector('#start').value;
+  let startList = startHour.split(":");
+  let endHour = document.querySelector('#end').value;
+  let endList = endHour.split(":");
+
+  end = start;
+  start.setHours(startList[0], startList[1], 0);
+  let s = new Date(start);
+  end.setHours(endList[0], endList[1], 0);
+  let e = new Date(end);
+
+  let clicked = {allday : "no", start: s, end: e};
+  console.log(clicked);
+  var delnum = false;
+
+  /*array로 대충 데이터보관*/
+  for(var i = 0; i<clickedArray.length; i++) {
+    var prev = clickedArray[i];
+
+    let now = clicked.start.getFullYear()+(clicked.start.getMonth()+1)+clicked.start.getDate();
+    let bef = prev.start.getFullYear()+(prev.start.getMonth()+1)+prev.start.getDate();
+
+    if(now == bef) {
+      if(chose.classList.contains('day-active')) {
+        chose.classList.remove('day-active')
+        clickedArray.splice(i, 1);
+      }
+      else if(chose.classList.contains('day-active2')) {
+        chose.classList.remove('day-active2');
+        clickedArray.splice(i, 1);
+        delnum=true;
+      }
+    }
+  }
+  if(delnum==false) {
+    clickedArray.push(clicked);
+    chose.classList.add('day-active2');
+  }
+  init.activeDTag = chose;
+  let day =  document.querySelector('.mcontainer').value;
+  init.activeDate.setDate(day);
+
+  document.querySelector('.modal_wrap').style.display ='none';
+  document.querySelector('.black_bg').style.display ='none';
+}
+
+
+

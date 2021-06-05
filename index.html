@@ -324,7 +324,7 @@
       </button>
   </div>
   <div class="black_bg"></div>
-  <div id="data">none</div>
+  <div id="data" value="null"></div>
   
   
   <script src="vendor/js/jquery.min.js"></script>
@@ -347,7 +347,10 @@
         }
         else{
             for(var i = 1; i<scheduleList.length-1; i++) {
-                console.log('val : ' + scheduleList[i]);
+                sList = scheduleList[i].split("=");
+                for(var j = 0; j<sList.length; j++) {
+                    console.log('val : ' + sList[j]);
+                }
             }
         }
     });
