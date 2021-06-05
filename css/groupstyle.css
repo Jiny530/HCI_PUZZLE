@@ -372,6 +372,12 @@ html, body {
   color: #fff;
 }
 
+.cal-table td.day-deactive {
+  background: #959595;
+  border-radius: 5%;
+  color: #fff;
+}
+
 .cal-table td.has-event:after {
   content: '';
   display: block;
