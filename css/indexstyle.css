@@ -23,7 +23,7 @@ body{
   font-weight: 600;
   text-align: center;
   line-height: 30px;
-  color: #5f56cd;
+  color: #906afc;
   user-select: none;
   padding-top: 50px;
   padding-bottom: 40px;
@@ -645,43 +645,50 @@ select.filter {
   transition: 0.5s;
 }
 
-#mem {
+.mem, .mem1, .mem2, .mem3{
   float : left;
   margin-right:5px;
+  border-radius: 100%;
+  color: #fff;
+  width: 100px;
+  height: 100px;
+  padding-top: 40px;
+
+  -ms-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.mem1, .mem2, .mem3{
+  background: #747474;
+}
+
+.mem {
   background: #ff7979;
+}
+
+.mem1.active, .mem2.active, .mem3.active{
+  float : left;
+  margin-right:5px;
   border-radius: 100%;
   color: #fff;
   width: 100px;
   height: 100px;
   padding-top: 40px;
+
+  -ms-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
-#mem1 {
-  float : left;
-  margin-right:5px;
+
+.mem1.active {
   background: #ffc932;
-  border-radius: 100%;
-  color: #fff;
-  width: 100px;
-  height: 100px;
-  padding-top: 40px;
 }
-#mem2 {
-  float : left;
-  margin-right:5px;
-  background: #45b454;
-  border-radius: 100%;
-  color: #fff;
-  width: 100px;
-  height: 100px;
-  padding-top: 40px;
+.mem2.active {
+  background: #4edb5d;
 }
-#mem3 {
-  float : left;
-  margin-right:5px;
-  background: #7788ff;
-  border-radius: 100%;
-  color: #fff;
-  width: 100px;
-  height: 100px;
-  padding-top: 40px;
+.mem3.active {
+  background: #6197ff;
 }

@@ -198,13 +198,18 @@ $calBody.addEventListener('mouseup', (e) => {
 
 //스케쥴 완료!
 function confirm_gohome() {
-  location.href='index.html';
+  var url = "index.html?index&";
+  for(var i=0; i<clickedArray.length; i++) {
+    url += clickedArray[i].allday + "=" + clickedArray[i].date + "&";
+  }
+  window.location.href = url;
 }
 
 //스케쥴 고르기 취소
 function delete_gohome() {
   clearArray(clickedArray);
-  location.href='index.html';
+  var url = "index.html?index&none";
+  window.location.href = url;
 }
 
 //array비우는 함수

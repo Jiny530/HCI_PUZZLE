@@ -47,68 +47,68 @@ document.addEventListener('DOMContentLoaded', function() {
           title: 'Tim',
           start: '2021-06-01',
           end: '2021-06-03',
-          color: '#D25565',
+          color: '#ff7979',
           description: ''
         },
         {
           title: 'Tim',
           start: '2021-06-20',
           end: '2021-06-03',
-          color: '#D25565',
+          color: '#ff7979',
           description: ''
         },
         {
           title: 'Tim',
           start: '2021-06-16',
           end: '2021-06-19',
-          color: '#D25565',
+          color: '#ff7979',
           description: ''
         },
         {
           title: 'Henry',
           start: '2021-06-07',
           end: '2021-06-09',
-          color: '#b1fc74',
+          color: '#ffc932',
           description: ''
         },
         {
           title: 'Henry',
           start: '2021-06-23',
           end: '2021-06-24',
-          color: '#b1fc74',
+          color: '#ffc932',
           description: ''
         },
         {
           title: 'Cathy',
           start: '2021-06-08',
           end: '2021-06-10',
-          color: '#ffa94d',
+          color: '#4edb5d',
           description: ''
         },
         {
           title: 'Cathy',
           start: '2021-06-20',
-          color: '#ffa94d',
+          color: '#4edb5d',
           description: ''
         },
         {
           title: 'Emma',
           start: '2021-06-12',
           end: '2021-06-13',
-          color: '#74c0fc',
+          color: '#6197ff',
           description: ''
         },
         {
           title: 'Emma',
           start: '2021-06-02',
-          color: '#74c0fc',
+          color: '#6197ff',
           description: ''
         },
         {
           title: 'Emma',
           start: '2021-06-30',
           end: '2021-07-02',
-          color: '#74c0fc',
+          color: '#6197ff',
           description: ''
         },
         {

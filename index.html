@@ -314,16 +314,17 @@
           <h4 class="modal_title">Choose member</h4>
       </div>
       <div class="mcontainer">
-          <div id="mem">Tim</div>
-          <div id="mem1">Henry</div>
-          <div id="mem2">Cathy</div>
-          <div id="mem3">Emma</div>
+          <div class="mem">ME</div>
+          <div class="mem1" onclick="changeH()">Henry</div>
+          <div class="mem2" onclick="changeC()">Cathy</div>
+          <div class="mem3" onclick="changeE()">Emma</div>
       </div>
       <button class="mconfirm" onclick="groupSchedule()">
           Confirm
       </button>
   </div>
   <div class="black_bg"></div>
+  <div id="data">none</div>
   
   
   <script src="vendor/js/jquery.min.js"></script>
@@ -334,9 +335,22 @@
     let btn = document.querySelector("#btn");
     let sidebar = document.querySelector(".sidebar");
     let searchBtn = document.querySelector(".bx-search");
-    let off =  document.querySelector(".mclose");
-    let bg = document.querySelector(".black_bg");
-    let mod = document.querySelector("modal_wrap");
+
+    $(document).ready(function () {
+        var scheduleList;
+        var scheduleDone;
+        scheduleList = location.href.split("&");
+        if(scheduleList[1]=="none") {
+            scheduleDone="none";
+            $("#remindBtn").hide();
+            $("#schedulingBtn").show();
+        }
+        else{
+            for(var i = 1; i<scheduleList.length-1; i++) {
+                console.log('val : ' + scheduleList[i]);
+            }
+        }
+    });
  
     btn.onclick = function() {
       sidebar.classList.toggle("active");
@@ -364,20 +378,25 @@
     }
 
     function groupSchedule() {
-      $("#remindBtn").hide();
-      $("#schedulingBtn").show();
-      
       document.querySelector('.modal_wrap').style.display ='none';
       document.querySelector('.black_bg').style.display ='none';
-        
+      $("#remindBtn").hide();
+      $("#schedulingBtn").show();
     }
+
+    function changeH() {
+        document.querySelector('.mem1').classList.toggle("active");
+    }
+    function changeC() {
+        document.querySelector('.mem2').classList.toggle("active");
+    }
+    function changeE() {
+        document.querySelector('.mem3').classList.toggle("active");
+    }
+
 
     function aa(){
       location.href='groupscheduling.html'
-      
-      //이거는 그룹스케줄링에서 돌아올때 넣기
-      $("#schedulingBtn").hide();
-      $("#remindBtn").show();
     }
 
    </script>

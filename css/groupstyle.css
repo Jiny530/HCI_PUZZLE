@@ -25,7 +25,7 @@ body{
   font-weight: 600;
   text-align: center;
   line-height: 30px;
-  color: #5f56cd;
+  color: #906afc;
   user-select: none;
   padding-top: 50px;
   padding-bottom: 40px;
@@ -391,7 +391,7 @@ html, body {
   -moz-appearance: none;
   appearance: none;
 
-  background: #5f56cd;
+  background: #906afc;
   color: #ffffff;
 
   margin: 10px auto;
