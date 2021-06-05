@@ -127,47 +127,94 @@ $btnPrev.addEventListener('click', () => loadYYMM(init.prevMonth()));
  * 여기가 캘린더 속 날짜 클릭 시 이벤트임
  */
 $calBody.addEventListener('mouseup', (e) => {
+
   <!-- 우클=세부 -->
   if ((event.button == 2) || (event.which == 3)) {
       if (e.target.classList.contains('day')) {
-        if (init.activeDTag) {
-        }
         let day = Number(e.target.textContent);
         loadDate(day, e.target.cellIndex);
-        e.target.classList.add('day-active2');
+
+        var delnum = false;
+        var clicked = {allday : "no", date: clickedDate};
+
+        /*array로 대충 데이터보관*/
+        for(var i = 0; i<clickedArray.length; i++) {
+          var prev = clickedArray[i];
+          if(clicked.date == prev.date) {
+            if(e.target.classList.contains('day-active')) {
+              e.target.classList.remove('day-active')
+              clickedArray.splice(i, 1);
+            }
+            else if(e.target.classList.contains('day-active2')) {
+              e.target.classList.remove('day-active2');
+              clickedArray.splice(i, 1);
+              delnum=true;
+            }
+          }
+        }
+        if(delnum==false) {
+          clickedArray.push(clicked);
+          e.target.classList.add('day-active2');
+        }
         init.activeDTag = e.target;
         init.activeDate.setDate(day);
-        /*array로 대충 데이터보관*/
-        var clicked = {allday : "no", date: clickedDate};
-        clickedArray.push(clicked);
-
         reloadTodo();
       }
   }
   <!-- 좌클=전체 -->
   else {
       if (e.target.classList.contains('day')) {
-          if (init.activeDTag) {
-          }
           let day = Number(e.target.textContent);
           loadDate(day, e.target.cellIndex);
-          e.target.classList.add('day-active');
+
+          var delnum = false;
+          var clicked = {allday : "yes", date: clickedDate};
+
+          /*array로 대충 데이터보관*/
+          for(var i = 0; i<clickedArray.length; i++) {
+            var prev = clickedArray[i];
+            if(clicked.date == prev.date) {
+              if(e.target.classList.contains('day-active2')) {
+                e.target.classList.remove('day-active2')
+                clickedArray.splice(i, 1);
+              }
+              else if(e.target.classList.contains('day-active')) {
+                e.target.classList.remove('day-active');
+                clickedArray.splice(i, 1);
+                delnum=true;
+              }
+            }
+          }
+          if(delnum==false) {
+            clickedArray.push(clicked);
+            e.target.classList.add('day-active');
+          }
           init.activeDTag = e.target;
           init.activeDate.setDate(day);
-          /*array로 대충 데이터보관*/
-          var clicked = {allday : "yes", date: clickedDate};
-          clickedArray.push(clicked);
-
-          /*잘 담기고 있는지 test code*/
-          /*if(clickedArray.length>3) {
-            for(var i = 0; i<clickedArray.length; i++) {
-              document.writeln(clickedArray[i].date);
-            }
-          }*/
-
           reloadTodo();
-      }
+        }
   }
 });
 
+//스케쥴 완료!
+function confirm_gohome() {
+  var url = "index.html?index&";
+  for(var i=0; i<clickedArray.length; i++) {
+    url += clickedArray[i].allday + "=" + clickedArray[i].date + "&";
+  }
+  window.location.href = url;
+}
 
+//스케쥴 고르기 취소
+function delete_gohome() {
+  clearArray(clickedArray);
+  var url = "index.html?index&none";
+  window.location.href = url;
+}
+
+//array비우는 함수
+function clearArray(array) {
+  while (array.length) {
+    array.pop();
+  }
+}

@@ -23,7 +23,7 @@ body{
   font-weight: 600;
   text-align: center;
   line-height: 30px;
-  color: #5f56cd;
+  color: #906afc;
   user-select: none;
   padding-top: 50px;
   padding-bottom: 40px;
@@ -565,4 +565,130 @@ select.filter {
 #add-color,
 #edit-color {
   color: #d25565;
+}
+
+.modal_wrap{
+  display: none;
+  width: 500px;
+  height: 250px;
+  position: absolute;
+  top:50%;
+  left: 50%;
+  margin: -250px 0 0 -250px;
+  background:#eee;
+  z-index: 2;
+  border-radius: 2%;
+}
+
+.modal_title {
+  margin-left : 10px;
+}
+
+.black_bg{
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color:rgba(0, 0,0, 0.5);
+  top:0;
+  left: 0;
+  z-index: 1;
+}
+.mclose{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  background: #bababa;
+  color: #ffffff;
+
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 400;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  display: inline-block;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.mcontainer {
+  margin-top: 50px;
+  margin-left: 40px;
+  text-align: center;
+}
+
+.mconfirm{
+  margin: 20px 220px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  background: #bababa;
+  color: #ffffff;
+
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 400;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  display: inline-block;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.mem, .mem1, .mem2, .mem3{
+  float : left;
+  margin-right:5px;
+  border-radius: 100%;
+  color: #fff;
+  width: 100px;
+  height: 100px;
+  padding-top: 40px;
+
+  -ms-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.mem1, .mem2, .mem3{
+  background: #747474;
+}
+
+.mem {
+  background: #ff7979;
+}
+
+.mem1.active, .mem2.active, .mem3.active{
+  float : left;
+  margin-right:5px;
+  border-radius: 100%;
+  color: #fff;
+  width: 100px;
+  height: 100px;
+  padding-top: 40px;
+
+  -ms-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.mem1.active {
+  background: #ffc932;
+}
+.mem2.active {
+  background: #4edb5d;
+}
+.mem3.active {
+  background: #6197ff;
 }
