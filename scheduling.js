@@ -39,8 +39,8 @@ const $btnNext = document.querySelector('.btn-cal.next');
 const $btnPrev = document.querySelector('.btn-cal.prev');
 
 var clickedArray = new Array();
-var start = new Date();
-var end = new Date();
+var start = "";
+var end = "";
 var chose;
 var activeArr = [21, 22, 24, 25, 26, 27, 28, 29];
 
@@ -64,7 +64,13 @@ function loadYYMM (fullDate) {
   let lastDay = init.getLastDay(yy, mm);
   let markToday;  // for marking today date
 
-  clickedYearMonth += yy+'-'+(mm+1);
+  if (mm<10){
+    clickedYearMonth += yy+'-0'+(mm+1);
+  }
+  else{
+    clickedYearMonth += yy+'-'+(mm+1);
+  }
+  
 
   if (mm === init.today.getMonth() && yy === init.today.getFullYear()) {
     markToday = init.today.getDate();
@@ -141,23 +147,23 @@ $btnPrev.addEventListener('click', () => loadYYMM(init.prevMonth()));
  */
 $calBody.addEventListener('mouseup', (e) => {
 
-  <!-- 우클=세부 -->
+  //<!-- 우클=세부 -->
   if ((event.button == 2) || (event.which == 3)) {
       if (e.target.classList.contains('day') && !e.target.classList.contains('day-deactive')) {
         let day = Number(e.target.textContent);
         chose = e.target;
         loadDate(day, e.target.cellIndex);
-        var cDate = new Date(clickedYearMonth+'-'+clickedDate);
+        var cDate = clickedYearMonth+'-'+clickedDate;
         start = cDate;
         openModal(day);
       }
   }
-  <!-- 좌클=전체 -->
+  //<!-- 좌클=전체 -->
   else {
       if (e.target.classList.contains('day') && !e.target.classList.contains('day-deactive')) {
           let day = Number(e.target.textContent);
           loadDate(day, e.target.cellIndex);
-          var cDate = new Date(clickedYearMonth+'-'+clickedDate);
+          var cDate = clickedYearMonth+'-'+clickedDate;
           start = cDate;
           var delnum = false;
 
@@ -193,16 +199,17 @@ function confirm_gohome() {
   min = Math.ceil(0);
   max = Math.floor(clickedArray.length);
   var n = Math.floor(Math.random() * (max - min)) + min;
-
   var url = "index.html?index&";
-  url += clickedArray[n].allday + "=" + clickedArray[n].start + "=" + clickedArray[n].end + "&";
+  url += "flag=" + "1" + "&"+ "start=" + clickedArray[n].start + "&";
+  
+  gs_flag = 1;
   window.location.href = url;
 }
 
 //스케쥴 고르기 취소
 function delete_gohome() {
   clearArray(clickedArray);
-  var url = "index.html?index&none";
+  var url = "index.html?index&none&flag=0";
   window.location.href = url;
 }
 

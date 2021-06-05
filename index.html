@@ -25,7 +25,7 @@
 <script src='./packages/core/main.js'></script>
 <script src='./packages/interaction/main.js'></script>
 <script src='./packages/daygrid/main.js'></script>
-<script src="./main_calendar.js"></script>
+
 <style>
 
   body {
@@ -126,7 +126,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
-                <h2 id="modalTitle" class="modal-title">Task: Hi-fi prototyping</h2>
+                <h2 class="modal-title">Task: Hi-fi prototyping</h2>
             </div>
             <div class="modal-body">
               <h4>Date</h4>
@@ -142,14 +142,14 @@
               <hr>
               <h4>Description</h4>
               <p><ul style="margin-left: 30px; margin-bottom: 20px;">
-                <li>어쩌구 저쩌구<br>저쩌구 어쩌구</li>
+                <li>Make Web</li>
               </ul></p>
               <hr>
               <h4>Document</h4>
               <p>
                 <ul style="margin-left: 30px; margin-bottom: 20px;">
-                  <li><a>Heuristic_evaluation_first.pptx</a></li>
-                  <li><a>Heuristic_evaluation_final.pptx</a></li>
+                  <li><a>Hi-fi_prototyping_final.pdf</a></li>
+                  <li><a>Hi-fi_prototyping_link.txt</a></li>
                 </ul>
               </p>
             </div>             
@@ -166,31 +166,34 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
-                <h2 class="modal-title"></h2>
+                <h2 id="modalTitle" class="modal-title"></h2>
             </div>
             <div class="modal-body">
               <h4>Date</h4>
               <p><ul style="margin-left: 30px; margin-bottom: 20px;">
-                <li>2021-06-05 - 2021-06-07</li>
+                <li id="date"></li>
               </ul></p>
               <hr>
               <h4>Participants</h4>
               <p><ul style="margin-left: 30px; margin-bottom: 20px;">
-                <li style="float : left; margin-right: 40px;">Tim</li>
-                <li style="margin-right: 40px;">Henry</li>
+                <li id="p1" style="float : left; margin-right: 40px;">Tim</li>
+                <li id="p2" style="float : left; margin-right: 40px;">Henry</li>
+                <li id="p3" style="float : left; margin-right: 40px;">Cathy</li>
+                <li id="p4" style="margin-right: 40px;">Emma</li>
               </ul></p>
               <hr>
               <h4>Description</h4>
               <p><ul style="margin-left: 30px; margin-bottom: 20px;">
-                <li>어쩌구 저쩌구<br>저쩌구 어쩌구</li>
+                <li id="des"></li>
               </ul></p>
               <hr>
               <h4>Document</h4>
               <p>
                 <ul style="margin-left: 30px; margin-bottom: 20px;">
-                  <li><a>Heuristic_evaluation_first.pptx</a></li>
-                  <li><a>Heuristic_evaluation_final.pptx</a></li>
+                  <li id="one"><a id="aone"></a></li>
+                  <li id="two"><a id="atwo"></a></li>
                 </ul>
+                <button type="button"class="btn btn-primary btn-sm">  Upload</button>
               </p>
             </div>             
             
@@ -345,7 +348,7 @@
     let btn = document.querySelector("#btn");
     let sidebar = document.querySelector(".sidebar");
     let searchBtn = document.querySelector(".bx-search");
-    let taskName = document.querySelector("#mname").value;
+    var taskName = document.querySelector("#mname").value;
 
     $(document).ready(function () {
         var scheduleList;
@@ -415,7 +418,7 @@
     }
 
    </script>
-   
+   <script src="./main_calendar.js"></script>
    <!--<script src="js/addEvent.js"></script>-->
 
 </body>
