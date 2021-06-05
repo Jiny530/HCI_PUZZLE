@@ -596,15 +596,14 @@ select.filter {
 }
 .mclose{
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 0px;
+  right: 0px;
 
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
 
-  background: #bababa;
-  color: #ffffff;
+  color: #797979;
 
   padding: 0.5rem 1rem;
   font-size: 1rem;
