@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (info.event.title != 'Tim' && info.event.title != 'Henry' && info.event.title != 'Cathy' && info.event.title != 'Emma')
         {
             
-          $('#modalTitle').html(info.event.title);/*
+          $('#modalTitle').html("Task : "+info.event.title);/*
           $('#time').html('Date\t:\t',info.event.extendedProps.start);
           $('#participants').html('Participants\t:\tTim\tHenrry');
           $('#place').html('Place\t:\tA101');
