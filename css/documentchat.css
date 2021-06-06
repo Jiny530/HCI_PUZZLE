@@ -51,22 +51,16 @@
     color: grey;
   }
 
-  new-chat{
-    position: fixed;
-    bottom: 0px;
-    width: 100%;
-    background: #ededed;
-    height: 40px;
-    left: 0px;
-    border-top: 1px solid #ddd;
-}
+
 .new-chat input{
+    position: fixed;
+    bottom: 6px;
     margin-top: 40px;
     outline: none;
     padding: 10px;
     box-sizing: border-box;
     font-size: 18px;
-    width: 95%;
+    width: 90%;
     height: 40px;
     border: none;
     display: inline-block;
@@ -75,8 +69,11 @@
     background: #ddd;
 }
 .new-chat button{
+    position: fixed;
+    bottom: 0px;
+    left: 640px;
     margin-top: 40px;
-    width: 40px;
+    width: 20px;
     height: 30px;
     padding: 0;
     display: inline-block;
