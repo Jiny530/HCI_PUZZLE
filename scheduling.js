@@ -42,6 +42,7 @@ const $btnPrev = document.querySelector('.btn-cal.prev');
 var clickedArray = new Array();
 var start = "";
 var end = "";
+
 var chose;
 var activeArr = [21, 22, 24, 25, 26, 27, 28, 29];
 
@@ -168,7 +169,7 @@ $calBody.addEventListener('mouseup', (e) => {
           start = cDate;
           var delnum = false;
 
-          var clicked = {allday : "yes", start: start, end:"none"};
+          var clicked = {allday : "yes", start: start, end:"none", time: "00:00"};
 
           /*array로 대충 데이터보관*/
           for(var i = 0; i<clickedArray.length; i++) {
@@ -209,7 +210,7 @@ function confirm_gohome() {
   max = Math.floor(clickedArray.length);
   var n = Math.floor(Math.random() * (max - min)) + min;
   var url = "index.html?index&";
-  url += "flag=" + "1" + "&"+ "start=" + clickedArray[n].start + "&" + "name=" + getURLParams(gs_url).name;
+  url += "flag=" + "1" + "&"+ "start=" + clickedArray[n].start + "&"+ "time=T" + clickedArray[n].time + ":00" + "&" + "name=" + getURLParams(gs_url).name;
   
   gs_flag = 1;
   window.location.href = url;
@@ -247,21 +248,16 @@ function groupSchedule() {
   let endList = endHour.split(":");
 
   end = start;
-  start.setHours(startList[0], startList[1], 0);
-  let s = new Date(start);
-  end.setHours(endList[0], endList[1], 0);
-  let e = new Date(end);
 
-  let clicked = {allday : "no", start: s, end: e};
-  console.log(clicked);
+  let clicked = {allday : "no", start: end, end: "none", time: startHour, sec: "00"};
   var delnum = false;
 
   /*array로 대충 데이터보관*/
   for(var i = 0; i<clickedArray.length; i++) {
     var prev = clickedArray[i];
 
-    let now = clicked.start.getFullYear()+(clicked.start.getMonth()+1)+clicked.start.getDate();
-    let bef = prev.start.getFullYear()+(prev.start.getMonth()+1)+prev.start.getDate();
+    let now = clicked.start
+    let bef = prev.start
 
     if(now == bef) {
       if(chose.classList.contains('day-active')) {

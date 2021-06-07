@@ -324,13 +324,25 @@ document.addEventListener('DOMContentLoaded', function() {
     // 이벤트 추가 함수 (참고할것)
     
     if (getURLParams(url).flag){
-      calendar.addEvent({
-        title: getURLParams(url).name,
-        start: getURLParams(url).start,
-        end: getURLParams(url).start,
-        color: '#9775fa',
-        description : ""
-      });
+      if (getURLParams(url).time == "T00:00:00"){
+        calendar.addEvent({
+          title: getURLParams(url).name,
+          start: getURLParams(url).start,
+          end: getURLParams(url).start,
+          color: '#9775fa',
+          description : ""
+        });
+      }
+      else{
+        calendar.addEvent({
+          title: getURLParams(url).name,
+          start: getURLParams(url).start + getURLParams(url).time,
+          end: getURLParams(url).start,
+          color: '#9775fa',
+          description : ""
+        });
+      }
+      
       params.set('flag', '0');
       //url = "index.html";
     }
