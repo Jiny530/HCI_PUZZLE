@@ -44,7 +44,7 @@ var start = "";
 var end = "";
 
 var chose;
-var activeArr = [21, 22, 24, 25, 26, 27, 28, 29];
+var activeArr = [13, 15, 21, 22, 24, 25, 26, 27, 28, 29];
 
 /**
  * @param {number} date
