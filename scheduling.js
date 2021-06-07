@@ -38,6 +38,7 @@ const $calBody = document.querySelector('.cal-body');
 const $btnNext = document.querySelector('.btn-cal.next');
 const $btnPrev = document.querySelector('.btn-cal.prev');
 
+
 var clickedArray = new Array();
 var start = "";
 var end = "";
@@ -194,13 +195,21 @@ $calBody.addEventListener('mouseup', (e) => {
   }
 });
 
+function getURLParams(url) {
+  var result = {};
+  url.replace(/[?&]{1}([^=&#]+)=([^&#]*)/g, function(s, k, v) { result[k] = decodeURIComponent(v); });
+  return result;
+}
+
+const gs_url = window.location.href;
+
 //스케쥴 완료!
 function confirm_gohome() {
   min = Math.ceil(0);
   max = Math.floor(clickedArray.length);
   var n = Math.floor(Math.random() * (max - min)) + min;
   var url = "index.html?index&";
-  url += "flag=" + "1" + "&"+ "start=" + clickedArray[n].start + "&";
+  url += "flag=" + "1" + "&"+ "start=" + clickedArray[n].start + "&" + "name=" + getURLParams(gs_url).name;
   
   gs_flag = 1;
   window.location.href = url;

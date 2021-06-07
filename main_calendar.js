@@ -4,6 +4,7 @@ function getURLParams(url) {
   url.replace(/[?&]{1}([^=&#]+)=([^&#]*)/g, function(s, k, v) { result[k] = decodeURIComponent(v); });
   return result;
 }
+
 document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
 
@@ -324,7 +325,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (getURLParams(url).flag){
       calendar.addEvent({
-        title: taskName,
+        title: getURLParams(url).name,
         start: getURLParams(url).start,
         end: getURLParams(url).start,
         color: '#9775fa',
