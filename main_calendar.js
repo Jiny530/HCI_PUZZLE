@@ -1,4 +1,10 @@
-var calendar;
+var gs_flag=0;
+function getURLParams(url) {
+  var result = {};
+  url.replace(/[?&]{1}([^=&#]+)=([^&#]*)/g, function(s, k, v) { result[k] = decodeURIComponent(v); });
+  return result;
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
 
@@ -30,12 +36,55 @@ document.addEventListener('DOMContentLoaded', function() {
         if (info.event.title != 'Tim' && info.event.title != 'Henry' && info.event.title != 'Cathy' && info.event.title != 'Emma')
         {
             
-          $('#modalTitle').html("Task : "+info.event.title);/*
-          $('#time').html('Date\t:\t',info.event.extendedProps.start);
-          $('#participants').html('Participants\t:\tTim\tHenrry');
-          $('#place').html('Place\t:\tA101');
-          $('#description').html('Description\t:\t',info.event.extendedProps.description);*/
-          //$('#eventUrl').attr('href',event.url);
+          $('#modalTitle').html("Task : "+info.event.title);
+          $('#date').html(info.event.end);
+          //$('#participants').html('Participants\t:\tTim\tHenrry');
+          $('#des').html(info.event.extendedProps.description);
+          if (info.event.title == 'Team meeting'){
+            $('#one').show();
+            $('#two').show();
+            $('#p1').show();
+            $('#p2').show();
+            $('#p3').show();
+            
+            $('#date').html(info.event.start);
+            $('#aone').html('Pre-Research.docs');
+            $('#atwo').html('Meeting_log.docs');
+          }
+          else if (info.event.title == 'Low-fi prototyping'){
+            $('#one').show();
+            $('#two').show();
+            $('#p1').show();
+            $('#p2').hide();
+            $('#p3').show();
+            $('#aone').html('Prototype_Presentation.pptx');
+            $('#atwo').html('Lo-fi_drawing.png');
+          }
+          else if (info.event.title == 'Heuristic evaluation'){
+            $('#one').show();
+            $('#two').show();
+            $('#p1').hide();
+            $('#p2').show();
+            $('#p3').hide();
+            $('#aone').html('Heuristic_evaluation_first.pptx');
+            $('#atwo').html('Heuristic_evaluation_final.pptx');
+          }
+          else if (info.event.title == 'Hi-fi prototyping'){
+            $('#one').show();
+            $('#two').show();
+            $('#p1').hide();
+            $('#p2').hide();
+            $('#p3').show();
+            $('#aone').html('Hi-fi_prototyping_final.pdf');
+            $('#atwo').html('Hi-fi_prototyping_link.txt');
+          }
+          else{
+            $('#one').hide();
+            $('#two').hide();
+            $('#date').html(info.event.start);
+          }
+
+          
           $('#calendarModal').modal();
         }
       },
@@ -114,27 +163,30 @@ document.addEventListener('DOMContentLoaded', function() {
         {
           title: 'Team meeting',
           start: '2021-06-05',
+          end: '2021-06-06',
           color: '#9775fa',
-          description: ''
+          description: 'All team members participate'
         },
         {
           title: 'Low-fi prototyping',
           start: '2021-06-10',
           end: '2021-06-12',
           color: '#9775fa',
-          description: ''
+          description: 'Better to make it out of paper'
         },
         {
           title: 'Heuristic evaluation',
           start: '2021-06-14',
+          end: '2021-06-15',
           color: '#9775fa',
-          description: ''
+          description: 'Meet the deadline'
         },
         {
           title: 'Hi-fi prototyping',
-          start: '2021-06-22',
+          start: '2021-06-19',
+          end: '2021-06-20',
           color: '#9775fa',
-          description: ''
+          description: 'Coding instead of using prototyping sites'
         },
         
       ]
@@ -154,6 +206,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var addBtnContainer = $('.modalBtnContainer-addEvent');
     var modifyBtnContainer = $('.modalBtnContainer-modifyEvent');
+    const url = window.location.href;
+    var params = new URLSearchParams(url);
 
     /* ****************
     *  새로운 일정 생성
@@ -242,7 +296,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 title: eventData.title,
                 start: eventData.start,
                 end: eventData.end,
-                color: eventData.backgroundColor
+                color: '#9775fa'
               });
             eventModal.modal('hide');
             /*
@@ -268,11 +322,32 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     // 이벤트 추가 함수 (참고할것)
-    calendar.addEvent({
-          title: 'aaaaa',
-          start: '2021-05-25',
-          end: '2021-05-26T12:30:00',
-          color: 'red'
+    
+    if (getURLParams(url).flag){
+      if (getURLParams(url).time == "T00:00:00"){
+        calendar.addEvent({
+          title: getURLParams(url).name,
+          start: getURLParams(url).start,
+          end: getURLParams(url).start,
+          color: '#9775fa',
+          description : ""
         });
+      }
+      else{
+        calendar.addEvent({
+          title: getURLParams(url).name,
+          start: getURLParams(url).start + getURLParams(url).time,
+          end: getURLParams(url).start,
+          color: '#9775fa',
+          description : ""
+        });
+      }
+      
+      params.set('flag', '0');
+      //url = "index.html";
+    }
+
+    
+    
     calendar.render();
   });

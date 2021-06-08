@@ -25,7 +25,7 @@
 <script src='./packages/core/main.js'></script>
 <script src='./packages/interaction/main.js'></script>
 <script src='./packages/daygrid/main.js'></script>
-<script src="./main_calendar.js"></script>
+
 <style>
 
   body {
@@ -116,23 +116,46 @@
   <div class="bar-container">
     <center>
       <button id="schedulingBtn" style = 'display: none' onclick="aa()">You need to check date!</button>
-      <button id="remindBtn" onclick="openReminder()">5 days until "Hi-fi prototyping"!</button>
+      <button id="remindBtn" onclick="openReminder()">3 days until "Low-fi prototyping"!</button>
     </center>
     
   </div>
 
   <div id="remindView" class="modal fade" style="margin-top:100px;">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+                <h2 class="modal-title">Task: Low-fi prototyping</h2>
+            </div>
+            <div class="modal-body">
+              <h4>Date</h4>
+              <p><ul style="margin-left: 30px; margin-bottom: 20px;">
+                <li>2021-06-10 - 2021-06-11</li>
+              </ul></p>
+              <hr>
+              <h4>Participants</h4>
+              <p><ul style="margin-left: 30px; margin-bottom: 20px;">
+                <li style="float : left; margin-right: 40px;">Tim</li>
+                <li style="float : left; margin-right: 40px;">Cathy</li>
+                <li style="margin-right: 40px;">Emma</li>
+              </ul></p>
+              <hr>
+              <h4>Description</h4>
+              <p><ul style="margin-left: 30px; margin-bottom: 20px;">
+                <li>Better to make it out of paper</li>
+              </ul></p>
+              <hr>
+              <h4>Document</h4>
+              <p>
+                <ul style="margin-left: 30px; margin-bottom: 20px;">
+                  <li><a>Prototype_Presentation.pptx</a></li>
+                  <li><a>Lo-fi_drawing.png</a></li>
+                </ul>
+              </p>
+            </div>             
+            
         </div>
-        <div class="modal-body">
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
     </div>
   </div>
   <!-- 캘린더 -->
@@ -149,26 +172,29 @@
             <div class="modal-body">
               <h4>Date</h4>
               <p><ul style="margin-left: 30px; margin-bottom: 20px;">
-                <li>2021-06-05 - 2021-06-07</li>
+                <li id="date"></li>
               </ul></p>
               <hr>
               <h4>Participants</h4>
               <p><ul style="margin-left: 30px; margin-bottom: 20px;">
-                <li style="float : left; margin-right: 40px;">Tim</li>
-                <li style="margin-right: 40px;">Henry</li>
+                <li id="p1" style="float : left; margin-right: 40px;">Tim</li>
+                <li id="p2" style="float : left; margin-right: 40px;">Henry</li>
+                <li id="p3" style="float : left; margin-right: 40px;">Cathy</li>
+                <li id="p4" style="margin-right: 40px;">Emma</li>
               </ul></p>
               <hr>
               <h4>Description</h4>
               <p><ul style="margin-left: 30px; margin-bottom: 20px;">
-                <li>어쩌구 저쩌구<br>저쩌구 어쩌구</li>
+                <li id="des"></li>
               </ul></p>
               <hr>
               <h4>Document</h4>
               <p>
                 <ul style="margin-left: 30px; margin-bottom: 20px;">
-                  <li><a>Heuristic_evaluation_first.pptx</a></li>
-                  <li><a>Heuristic_evaluation_final.pptx</a></li>
+                  <li id="one"><a id="aone"></a></li>
+                  <li id="two"><a id="atwo"></a></li>
                 </ul>
+                <button type="button"class="btn btn-primary btn-sm">  Upload</button>
               </p>
             </div>             
             
@@ -300,13 +326,19 @@
           <div class="mem1" onclick="changeH()">Henry</div>
           <div class="mem2" onclick="changeC()">Cathy</div>
           <div class="mem3" onclick="changeE()">Emma</div>
+          <div class="name">
+              <label class="n">Task Name</label>
+              <input type="text" id="mname" value="Task">
+          </div> <div class="name">
       </div>
+      </div>
+
       <button class="mconfirm" onclick="groupSchedule()">
           Confirm
       </button>
   </div>
   <div class="black_bg"></div>
-  <div id="data">none</div>
+  <div id="data" value="null"></div>
   
   
   <script src="vendor/js/jquery.min.js"></script>
@@ -317,6 +349,7 @@
     let btn = document.querySelector("#btn");
     let sidebar = document.querySelector(".sidebar");
     let searchBtn = document.querySelector(".bx-search");
+    
 
     $(document).ready(function () {
         var scheduleList;
@@ -329,7 +362,10 @@
         }
         else{
             for(var i = 1; i<scheduleList.length-1; i++) {
-                console.log('val : ' + scheduleList[i]);
+                sList = scheduleList[i].split("=");
+                for(var j = 0; j<sList.length; j++) {
+                    console.log('val : ' + sList[j]);
+                }
             }
         }
     });
@@ -360,6 +396,7 @@
     }
 
     function groupSchedule() {
+      taskName = document.querySelector('#mname').value;
       document.querySelector('.modal_wrap').style.display ='none';
       document.querySelector('.black_bg').style.display ='none';
       $("#remindBtn").hide();
@@ -378,11 +415,11 @@
 
 
     function aa(){
-      location.href='groupscheduling.html'
+      location.href='groupscheduling.html?groupscheduling&name='+taskName+"&";
     }
 
    </script>
-   
+   <script src="./main_calendar.js"></script>
    <!--<script src="js/addEvent.js"></script>-->
 
 </body>

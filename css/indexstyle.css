@@ -570,7 +570,7 @@ select.filter {
 .modal_wrap{
   display: none;
   width: 500px;
-  height: 250px;
+  height: 300px;
   position: absolute;
   top:50%;
   left: 50%;
@@ -596,15 +596,14 @@ select.filter {
 }
 .mclose{
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 0px;
+  right: 0px;
 
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
 
-  background: #bababa;
-  color: #ffffff;
+  color: #797979;
 
   padding: 0.5rem 1rem;
   font-size: 1rem;
@@ -625,7 +624,7 @@ select.filter {
 }
 
 .mconfirm{
-  margin: 20px 220px;
+  margin: 10px 220px;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -691,4 +690,8 @@ select.filter {
 }
 .mem3.active {
   background: #6197ff;
+}
+
+.n {
+  margin-top: 30px;
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" style="height: 1000px; overflow-y: scroll;">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -52,6 +52,31 @@
       <button class="back_button" onclick="delete_gohome();">
         Go Back
       </button>
+      <div class="modal_wrap">
+        <div class="mheader">
+          <button class="mclose" onclick="closeModal()">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal_title">Enter Specific Hour</h4>
+        </div>
+        <div class="mcontainer" value="null">
+          <div class="row">
+            <p class="col-xs-12">
+              <label class="mbody">start</label>
+              <input type="time" id="start" value="00:00">
+            </p>
+          </div>
+          <div class="row">
+            <p class="col-xs-12">
+              <label class="mbody">end</label>
+              <input type="time" id="end" value="00:00">
+            </p>
+          </div>
+        </div>
+        <button class="mconfirm" onclick="groupSchedule()">
+          Confirm
+        </button>
+      </div>
+      <div class="black_bg"></div>
     </div>
 
   <script>

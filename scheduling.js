@@ -38,12 +38,19 @@ const $calBody = document.querySelector('.cal-body');
 const $btnNext = document.querySelector('.btn-cal.next');
 const $btnPrev = document.querySelector('.btn-cal.prev');
 
+
 var clickedArray = new Array();
+var start = "";
+var end = "";
+
+var chose;
+var activeArr = [13, 15, 21, 22, 24, 25, 26, 27, 28, 29];
 
 /**
  * @param {number} date
  * @param {number} dayIn
 */
+var clickedYearMonth="";
 var clickedDate = "";
 
 function loadDate (date, dayIn) {
@@ -58,6 +65,14 @@ function loadYYMM (fullDate) {
   let firstDay = init.getFirstDay(yy, mm);
   let lastDay = init.getLastDay(yy, mm);
   let markToday;  // for marking today date
+
+  if (mm<10){
+    clickedYearMonth += yy+'-0'+(mm+1);
+  }
+  else{
+    clickedYearMonth += yy+'-'+(mm+1);
+  }
+  
 
   if (mm === init.today.getMonth() && yy === init.today.getFullYear()) {
     markToday = init.today.getDate();
@@ -78,8 +93,13 @@ function loadYYMM (fullDate) {
       if (!startCount) {
         trtd += '<td>'
       } else {
+        let de = true;
         let fullDate = yy + '.' + init.addZero(mm + 1) + '.' + init.addZero(countDay + 1);
+        for(let k = 0; k<activeArr.length; k++) {
+          if(fullDate === "2021.06." + String(activeArr[k])) de = false;
+        }
         trtd += '<td class="day';
+        trtd += (de === true) ? ' day-deactive" ' : '"';
         trtd += (markToday && markToday === countDay + 1) ? ' today" ' : '"';
         trtd += ` data-date="${countDay + 1}" data-fdate="${fullDate}">`;
       }
@@ -88,6 +108,7 @@ function loadYYMM (fullDate) {
         startCount = 0;
       }
       trtd += '</td>';
+
     }
     trtd += '</tr>';
   }
@@ -128,47 +149,27 @@ $btnPrev.addEventListener('click', () => loadYYMM(init.prevMonth()));
  */
 $calBody.addEventListener('mouseup', (e) => {
 
-  <!-- 우클=세부 -->
+  //<!-- 우클=세부 -->
   if ((event.button == 2) || (event.which == 3)) {
-      if (e.target.classList.contains('day')) {
+      if (e.target.classList.contains('day') && !e.target.classList.contains('day-deactive')) {
         let day = Number(e.target.textContent);
+        chose = e.target;
         loadDate(day, e.target.cellIndex);
-
-        var delnum = false;
-        var clicked = {allday : "no", date: clickedDate};
-
-        /*array로 대충 데이터보관*/
-        for(var i = 0; i<clickedArray.length; i++) {
-          var prev = clickedArray[i];
-          if(clicked.date == prev.date) {
-            if(e.target.classList.contains('day-active')) {
-              e.target.classList.remove('day-active')
-              clickedArray.splice(i, 1);
-            }
-            else if(e.target.classList.contains('day-active2')) {
-              e.target.classList.remove('day-active2');
-              clickedArray.splice(i, 1);
-              delnum=true;
-            }
-          }
-        }
-        if(delnum==false) {
-          clickedArray.push(clicked);
-          e.target.classList.add('day-active2');
-        }
-        init.activeDTag = e.target;
-        init.activeDate.setDate(day);
-        reloadTodo();
+        var cDate = clickedYearMonth+'-'+clickedDate;
+        start = cDate;
+        openModal(day);
       }
   }
-  <!-- 좌클=전체 -->
+  //<!-- 좌클=전체 -->
   else {
-      if (e.target.classList.contains('day')) {
+      if (e.target.classList.contains('day') && !e.target.classList.contains('day-deactive')) {
           let day = Number(e.target.textContent);
           loadDate(day, e.target.cellIndex);
-
+          var cDate = clickedYearMonth+'-'+clickedDate;
+          start = cDate;
           var delnum = false;
-          var clicked = {allday : "yes", date: clickedDate};
+
+          var clicked = {allday : "yes", start: start, end:"none", time: "00:00"};
 
           /*array로 대충 데이터보관*/
           for(var i = 0; i<clickedArray.length; i++) {
@@ -191,24 +192,34 @@ $calBody.addEventListener('mouseup', (e) => {
           }
           init.activeDTag = e.target;
           init.activeDate.setDate(day);
-          reloadTodo();
         }
   }
 });
 
+function getURLParams(url) {
+  var result = {};
+  url.replace(/[?&]{1}([^=&#]+)=([^&#]*)/g, function(s, k, v) { result[k] = decodeURIComponent(v); });
+  return result;
+}
+
+const gs_url = window.location.href;
+
 //스케쥴 완료!
 function confirm_gohome() {
+  min = Math.ceil(0);
+  max = Math.floor(clickedArray.length);
+  var n = Math.floor(Math.random() * (max - min)) + min;
   var url = "index.html?index&";
-  for(var i=0; i<clickedArray.length; i++) {
-    url += clickedArray[i].allday + "=" + clickedArray[i].date + "&";
-  }
+  url += "flag=" + "1" + "&"+ "start=" + clickedArray[n].start + "&"+ "time=T" + clickedArray[n].time + ":00" + "&" + "name=" + getURLParams(gs_url).name;
+  
+  gs_flag = 1;
   window.location.href = url;
 }
 
 //스케쥴 고르기 취소
 function delete_gohome() {
   clearArray(clickedArray);
-  var url = "index.html?index&none";
+  var url = "index.html?index&none&flag=0";
   window.location.href = url;
 }
 
@@ -218,3 +229,59 @@ function clearArray(array) {
     array.pop();
   }
 }
+
+function openModal(day) {
+  document.querySelector('.modal_wrap').style.display ='block';
+  document.querySelector('.black_bg').style.display ='block';
+  document.querySelector('.mcontainer').value = day;
+}
+
+function closeModal() {
+  document.querySelector('.modal_wrap').style.display ='none';
+  document.querySelector('.black_bg').style.display ='none';
+}
+
+function groupSchedule() {
+  let startHour = document.querySelector('#start').value;
+  let startList = startHour.split(":");
+  let endHour = document.querySelector('#end').value;
+  let endList = endHour.split(":");
+
+  end = start;
+
+  let clicked = {allday : "no", start: end, end: "none", time: startHour, sec: "00"};
+  var delnum = false;
+
+  /*array로 대충 데이터보관*/
+  for(var i = 0; i<clickedArray.length; i++) {
+    var prev = clickedArray[i];
+
+    let now = clicked.start
+    let bef = prev.start
+
+    if(now == bef) {
+      if(chose.classList.contains('day-active')) {
+        chose.classList.remove('day-active')
+        clickedArray.splice(i, 1);
+      }
+      else if(chose.classList.contains('day-active2')) {
+        chose.classList.remove('day-active2');
+        clickedArray.splice(i, 1);
+        delnum=true;
+      }
+    }
+  }
+  if(delnum==false) {
+    clickedArray.push(clicked);
+    chose.classList.add('day-active2');
+  }
+  init.activeDTag = chose;
+  let day =  document.querySelector('.mcontainer').value;
+  init.activeDate.setDate(day);
+
+  document.querySelector('.modal_wrap').style.display ='none';
+  document.querySelector('.black_bg').style.display ='none';
+}
+
+
+
