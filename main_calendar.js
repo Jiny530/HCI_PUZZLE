@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // addEvent에서 긁어옴, 새로운 이벤트 추가할때 calendar.addEvent가 안돼서 집어넣음
     var eventModal = $('#eventModal');
 
-    var modalTitle = $('.modal-title');
+    var modalTitle = $('#modalTitle');
     var editAllDay = $('#edit-allDay');
     var editTitle = $('#edit-title');
     var editStart = $('#edit-start');
